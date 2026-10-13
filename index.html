@@ -35,6 +35,7 @@
             'float': 'float 3s ease-in-out infinite',
             'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             'pop': 'pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+            'shake': 'shake 0.4s ease-in-out',
           },
           keyframes: {
             bounceSoft: {
@@ -48,6 +49,11 @@
             pop: {
               '0%': { transform: 'scale(0.92)', opacity: '0' },
               '100%': { transform: 'scale(1)', opacity: '1' },
+            },
+            shake: {
+              '0%, 100%': { transform: 'translateX(0)' },
+              '20%, 60%': { transform: 'translateX(-6px)' },
+              '40%, 80%': { transform: 'translateX(6px)' }
             }
           }
         }
@@ -73,7 +79,7 @@
     }
 
     .glass-card-bright {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(12px);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     }
@@ -180,7 +186,7 @@
           <i class="fa-solid fa-user-astronaut text-pink-400 mr-1"></i> 选择你的代表英雄形象：
         </label>
         <div class="grid grid-cols-5 gap-2" id="avatarList">
-          <button type="button" onclick="selectAvatar(0)" class="avatar-btn p-2.5 rounded-2xl bg-white/10 border-2 border-pink-400 hover:scale-105 transition flex flex-col items-center">
+          <button type="button" onclick="selectAvatar(0)" class="avatar-btn p-2.5 rounded-2xl bg-white/10 border-2 border-pink-400 hover:scale-105 transition flex flex-col items-center shadow-lg">
             <span class="text-2xl">🗡️</span>
             <span class="text-[10px] font-bold text-purple-200 mt-1">多赛益</span>
           </button>
@@ -207,7 +213,7 @@
       <form id="loginForm" onsubmit="handleStartGame(event)" class="space-y-4 text-left">
         <div>
           <label class="block text-xs font-bold text-purple-200 mb-1">
-            <i class="fa-solid fa-id-card text-pink-400 mr-1"></i> 学生姓名（中文 / 英文）：
+            <i class="fa-solid fa-id-card text-pink-400 mr-1"></i> 学生真实姓名（中文 / 英文）：
           </label>
           <input type="text" id="playerNameInput" required placeholder="例如: 李小明 / Tan Ah Kow" 
             class="w-full px-4 py-3 rounded-2xl bg-slate-900/80 border border-purple-500/40 text-white placeholder-slate-500 focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-400/30 text-sm transition">
@@ -220,13 +226,13 @@
           <input type="email" id="playerEmailInput" required placeholder="例如: m-12345678@moe-dl.edu.my" 
             class="w-full px-4 py-3 rounded-2xl bg-slate-900/80 border border-purple-500/40 text-white placeholder-slate-500 focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-400/30 text-sm transition">
           <p class="text-[11px] text-pink-300/80 mt-1.5 flex items-center gap-1">
-            <i class="fa-solid fa-circle-info text-pink-400"></i> 必须以 <strong class="text-pink-200 underline">@moe-dl.edu.my</strong> 结尾方可记录成绩。
+            <i class="fa-solid fa-circle-info text-pink-400"></i> 请输入完整的学生账号（必须以 <strong class="text-pink-200 underline">@moe-dl.edu.my</strong> 结尾）。
           </p>
         </div>
 
         <!-- Custom Validation Error Message -->
-        <div id="loginError" class="hidden p-3.5 rounded-2xl bg-pink-950/80 border border-pink-500 text-pink-200 text-xs flex items-center gap-2 animate-shake">
-          <i class="fa-solid fa-triangle-exclamation text-pink-400 text-base"></i>
+        <div id="loginError" class="hidden p-3.5 rounded-2xl bg-pink-950/90 border border-pink-500 text-pink-200 text-xs flex items-center gap-2 animate-shake">
+          <i class="fa-solid fa-triangle-exclamation text-pink-400 text-base shrink-0"></i>
           <span id="loginErrorMsg">请输入有效的 MOE-DL 邮箱账号！</span>
         </div>
 
@@ -240,7 +246,7 @@
     <!-- ==================== 2. GAMEPLAY SCREEN ==================== -->
     <div id="gameScreen" class="hidden w-full space-y-4 animate-pop">
       
-      <!-- Modern RPG Status HUD -->
+      <!-- Modern Status HUD -->
       <div class="glass-card p-4 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4">
         <!-- Player Info -->
         <div class="flex items-center gap-3 w-full sm:w-auto">
@@ -357,7 +363,7 @@
             <i class="fa-solid fa-trophy text-amber-400"></i>
             <span>英雄荣耀榜 (MOE 专属排行榜)</span>
           </h3>
-          <span class="text-[10px] text-purple-300/70">按最高得分与用时排序</span>
+          <span class="text-[10px] text-purple-300/70">按最高得分排序</span>
         </div>
 
         <!-- Leaderboard Table Container -->
@@ -374,7 +380,7 @@
         </button>
         <button onclick="openTeacherModal()" class="flex-1 py-3.5 rounded-2xl bg-emerald-600/80 hover:bg-emerald-500 border border-emerald-400/50 text-white font-black text-sm flex items-center justify-center gap-2 transition shadow-lg">
           <i class="fa-solid fa-download"></i>
-          <span>教师下载成绩单 (Excel)</span>
+          <span>教师专区 / 管理与导出</span>
         </button>
       </div>
     </div>
@@ -383,7 +389,7 @@
 
   <!-- ==================== TEACHER MANAGEMENT MODAL ==================== -->
   <div id="teacherModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden animate-pop">
-    <div class="glass-card-bright w-full max-w-3xl rounded-3xl p-6 sm:p-8 text-slate-900 space-y-5 relative max-h-[90vh] overflow-y-auto">
+    <div class="glass-card-bright w-full max-w-4xl rounded-3xl p-6 sm:p-8 text-slate-900 space-y-5 relative max-h-[90vh] overflow-y-auto">
       
       <!-- Close Button -->
       <button onclick="closeTeacherModal()" class="absolute top-5 right-5 w-9 h-9 bg-slate-200 hover:bg-slate-300 rounded-full text-slate-700 flex items-center justify-center font-bold transition">
@@ -393,15 +399,15 @@
       <!-- Modal Header -->
       <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
         <div class="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center text-2xl shadow-md">
-          <i class="fa-solid fa-file-excel"></i>
+          <i class="fa-solid fa-user-gear"></i>
         </div>
         <div>
-          <h3 class="text-xl font-black text-slate-800">教师数据管理与成绩导出</h3>
-          <p class="text-xs text-slate-500">查看并导出所有学生完成 15 题练习的完整成绩记录</p>
+          <h3 class="text-xl font-black text-slate-800">教师数据管理与成绩控制台</h3>
+          <p class="text-xs text-slate-500">管理学生提交记录、清理测试数据，或一键导出 Excel 成绩单</p>
         </div>
       </div>
 
-      <!-- Password Guard (Simple Verification) -->
+      <!-- Password Guard (Hidden Password Prompt) -->
       <div id="teacherAuthBox" class="p-5 rounded-2xl bg-slate-100 border border-slate-200 space-y-3">
         <label class="block text-xs font-bold text-slate-700">
           <i class="fa-solid fa-lock text-pink-500 mr-1"></i> 请输入教师管理密码：
@@ -416,17 +422,23 @@
         <p id="teacherAuthError" class="text-xs text-pink-600 hidden font-bold">密码不正确，请重试！</p>
       </div>
 
-      <!-- Main Teacher Data Dashboard (Shown after verify) -->
+      <!-- Main Teacher Data Dashboard (Shown after verification) -->
       <div id="teacherDataContent" class="hidden space-y-4">
         <!-- Actions & Stats Bar -->
         <div class="flex flex-col sm:flex-row justify-between items-center gap-3 bg-slate-100 p-3.5 rounded-2xl border border-slate-200">
           <div class="text-xs font-bold text-slate-700">
             📊 已提交人数：<span id="totalStudentCount" class="text-pink-600 font-black text-base">0</span> 人
           </div>
-          <button onclick="exportToCSV()" class="w-full sm:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 shadow-md transition">
-            <i class="fa-solid fa-file-arrow-down text-lg"></i>
-            <span>下载全班 Excel 成绩单 (.csv)</span>
-          </button>
+          <div class="flex flex-wrap sm:flex-nowrap gap-2 w-full sm:w-auto">
+            <button onclick="clearAllDataConfirm()" class="px-3.5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition shadow">
+              <i class="fa-solid fa-trash-can"></i>
+              <span>清空所有测试数据</span>
+            </button>
+            <button onclick="exportToCSV()" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 shadow-md transition">
+              <i class="fa-solid fa-file-arrow-down text-base"></i>
+              <span>下载全班 Excel 成绩单 (.csv)</span>
+            </button>
+          </div>
         </div>
 
         <!-- Student Data Table -->
@@ -440,6 +452,7 @@
                 <th class="p-3">得分</th>
                 <th class="p-3">答对题数</th>
                 <th class="p-3">提交时间</th>
+                <th class="p-3 text-center">操作</th>
               </tr>
             </thead>
             <tbody id="teacherTableBody" class="divide-y divide-slate-200 bg-white text-slate-700">
@@ -464,7 +477,7 @@
     // Firebase Modular Imports
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-    import { getFirestore, collection, doc, setDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    import { getFirestore, collection, doc, setDoc, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
     // App Initialization
     const appId = typeof __app_id !== 'undefined' ? __app_id : 'sejarah-yr5-u5-quiz';
@@ -480,7 +493,7 @@
         db = getFirestore(app);
         auth = getAuth(app);
 
-        // Auth handling according to rules
+        // Auth handling
         if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
           signInWithCustomToken(auth, __initial_auth_token).catch(err => {
             console.log("Token auth error, fallback to anonymous", err);
@@ -504,8 +517,9 @@
     window.saveLeaderboardScore = async function(entry) {
       if (db && currentUser) {
         try {
+          const docId = entry.email.replace(/[^a-zA-Z0-9]/g, '_');
           const path = ['artifacts', appId, 'public', 'data', 'leaderboard'];
-          const userDocRef = doc(db, path[0], path[1], path[2], path[3], path[4], currentUser.uid);
+          const userDocRef = doc(db, path[0], path[1], path[2], path[3], path[4], docId);
           await setDoc(userDocRef, {
             name: entry.name,
             email: entry.email,
@@ -518,7 +532,6 @@
           console.error("Error saving to Firestore:", e);
         }
       }
-      // Save locally as fallback
       saveLocalScore(entry);
     };
 
@@ -529,7 +542,7 @@
           const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'leaderboard');
           const snapshot = await getDocs(colRef);
           snapshot.forEach(docSnap => {
-            scores.push(docSnap.data());
+            scores.push({ id: docSnap.id, ...docSnap.data() });
           });
         } catch (e) {
           console.error("Error fetching Firestore leaderboard:", e);
@@ -538,19 +551,55 @@
       if (scores.length === 0) {
         scores = getLocalScores();
       }
-      // Sort in JS (Rule 2: No complex queries in Firestore)
       scores.sort((a, b) => b.score - a.score);
-      
-      // Store globally for teacher CSV export
       window.cachedStudentScores = scores;
       return scores;
     };
 
+    window.deleteSingleScoreCloud = async function(email) {
+      if (db && currentUser) {
+        try {
+          const docId = email.replace(/[^a-zA-Z0-9]/g, '_');
+          const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'leaderboard', docId);
+          await deleteDoc(docRef);
+        } catch (e) {
+          console.error("Error deleting document from Firestore:", e);
+        }
+      }
+      deleteLocalScore(email);
+    };
+
+    window.clearAllScoresCloud = async function() {
+      if (db && currentUser) {
+        try {
+          const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'leaderboard');
+          const snapshot = await getDocs(colRef);
+          snapshot.forEach(async (docSnap) => {
+            await deleteDoc(docSnap.ref);
+          });
+        } catch (e) {
+          console.error("Error clearing Firestore collection:", e);
+        }
+      }
+      localStorage.removeItem('sejarah_u5_scores_v2');
+    };
+
     function saveLocalScore(entry) {
       const existing = getLocalScores();
-      existing.push(entry);
+      const index = existing.findIndex(item => item.email.toLowerCase() === entry.email.toLowerCase());
+      if (index >= 0) {
+        existing[index] = entry;
+      } else {
+        existing.push(entry);
+      }
       existing.sort((a, b) => b.score - a.score);
-      localStorage.setItem('sejarah_u5_scores_v2', JSON.stringify(existing.slice(0, 50)));
+      localStorage.setItem('sejarah_u5_scores_v2', JSON.stringify(existing));
+    }
+
+    function deleteLocalScore(email) {
+      let existing = getLocalScores();
+      existing = existing.filter(item => item.email.toLowerCase() !== email.toLowerCase());
+      localStorage.setItem('sejarah_u5_scores_v2', JSON.stringify(existing));
     }
 
     function getLocalScores() {
@@ -611,7 +660,6 @@
         osc.start(now);
         osc.stop(now + 0.05);
       } else if (type === 'correct') {
-        // Cheerful Bell / Upward Arpeggio
         const notes = [523.25, 659.25, 783.99, 1046.50];
         notes.forEach((freq, i) => {
           const osc = audioCtx.createOscillator();
@@ -626,7 +674,6 @@
           osc.stop(now + i * 0.08 + 0.25);
         });
       } else if (type === 'wrong') {
-        // Gentle wrong buzzer
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = 'sawtooth';
@@ -639,7 +686,6 @@
         osc.start(now);
         osc.stop(now + 0.25);
       } else if (type === 'victory') {
-        // Fanfare
         const notes = [440, 554.37, 659.25, 880, 1046.5];
         notes.forEach((freq, idx) => {
           const osc = audioCtx.createOscillator();
@@ -656,7 +702,7 @@
       }
     }
 
-    // 15 QUESTIONS DATASET WITH ACCURATE OPTIONS & DETAILED EXPLANATIONS
+    // 15 QUESTIONS DATASET
     const quizData = [
       {
         id: 1,
@@ -840,11 +886,9 @@
       }
     ];
 
-    // Avatars
     const avatars = ["🗡️", "🛡️", "🏹", "⚔️", "📜"];
     let selectedAvatarIdx = 0;
 
-    // Game state variables
     let currentPlayer = { name: "", email: "", avatar: "🗡️" };
     let currentQIndex = 0;
     let score = 0;
@@ -866,10 +910,35 @@
       });
     }
 
-    // Email validation requiring @moe-dl.edu.my
+    // STRICT NAME VALIDATION
+    function validateStudentName(name) {
+      const cleanName = name.trim();
+      // Minimum 2 characters
+      if (cleanName.length < 2) return false;
+      // Reject pure numbers or special symbols
+      if (/^[\d\W]+$/.test(cleanName)) return false;
+      // Reject repeated single chars like "aaaa", "111"
+      if (/^(.)\1+$/.test(cleanName)) return false;
+      // Must contain valid letters or Chinese chars
+      if (!/^[\u4e00-\u9fa5a-zA-Z\s.-]{2,30}$/.test(cleanName)) return false;
+      return true;
+    }
+
+    // STRICT MOE EMAIL VALIDATION
     function validateMoeEmail(email) {
-      const trimmed = email.trim().toLowerCase();
-      return trimmed.endsWith('@moe-dl.edu.my') && trimmed.length > 15;
+      const cleanEmail = email.trim().toLowerCase();
+      // Must end with @moe-dl.edu.my
+      if (!cleanEmail.endsWith('@moe-dl.edu.my')) return false;
+      
+      const parts = cleanEmail.split('@');
+      if (parts.length !== 2) return false;
+      
+      const prefix = parts[0];
+      // Prefix must be at least 3 chars, e.g. m-12345678 or student name
+      if (prefix.length < 3) return false;
+      if (!/^[a-z0-9._-]+$/i.test(prefix)) return false;
+
+      return true;
     }
 
     function handleStartGame(e) {
@@ -881,14 +950,16 @@
       const errorDiv = document.getElementById('loginError');
       const errorMsg = document.getElementById('loginErrorMsg');
 
-      if (!nameInput) {
-        errorMsg.innerText = "请输入您的姓名！";
+      // Validate Name
+      if (!validateStudentName(nameInput)) {
+        errorMsg.innerText = "请输入真实的学生姓名（中文或英文，至少2个字，禁止输入乱码或纯数字）！";
         errorDiv.classList.remove('hidden');
         return;
       }
 
+      // Validate MOE Email
       if (!validateMoeEmail(emailInput)) {
-        errorMsg.innerText = "电子邮箱格式错误！必须以 @moe-dl.edu.my 结尾。";
+        errorMsg.innerText = "请输入有效的 MOE 学生邮箱！前缀需完整，且必须以 @moe-dl.edu.my 结尾。";
         errorDiv.classList.remove('hidden');
         return;
       }
@@ -898,7 +969,7 @@
       // Setup Player
       currentPlayer = {
         name: nameInput,
-        email: emailInput,
+        email: emailInput.toLowerCase(),
         avatar: avatars[selectedAvatarIdx]
       };
 
@@ -910,7 +981,7 @@
       document.getElementById('loginScreen').classList.add('hidden');
       document.getElementById('gameScreen').classList.remove('hidden');
 
-      // Reset game parameters
+      // Reset game state
       currentQIndex = 0;
       score = 0;
       correctCount = 0;
@@ -930,15 +1001,12 @@
 
       const q = quizData[currentQIndex];
 
-      // Update question text and headers
       document.getElementById('currentQNum').innerText = currentQIndex + 1;
       document.getElementById('qTag').innerText = `第 ${currentQIndex + 1} / 15 题`;
       document.getElementById('questionText').innerText = q.question;
 
-      // Hide explanation box
       document.getElementById('explanationBox').classList.add('hidden');
 
-      // Render Answer Options
       const optionsContainer = document.getElementById('optionsContainer');
       optionsContainer.innerHTML = '';
 
@@ -950,7 +1018,6 @@
         optionsContainer.appendChild(btn);
       });
 
-      // Start timer
       startTimer();
     }
 
@@ -971,7 +1038,7 @@
 
         if (timeLeft <= 0) {
           clearInterval(timerInterval);
-          selectAnswer(-1); // Time out answer
+          selectAnswer(-1);
         }
       }, 100);
     }
@@ -981,7 +1048,6 @@
       const q = quizData[currentQIndex];
       const isCorrect = (selectedIndex === q.answer);
 
-      // Disable option buttons & style answer status
       const buttons = document.querySelectorAll('#optionsContainer button');
       buttons.forEach((btn, idx) => {
         btn.disabled = true;
@@ -996,7 +1062,6 @@
         }
       });
 
-      // Feedback Box
       const explanationBox = document.getElementById('explanationBox');
       const feedbackHeader = document.getElementById('feedbackHeader');
       const explanationText = document.getElementById('explanationText');
@@ -1008,7 +1073,6 @@
         combo++;
         correctCount++;
         
-        // Bonus calculation
         const speedBonus = Math.round(timeLeft * 5);
         const gainedScore = 100 + (combo > 1 ? combo * 25 : 0) + speedBonus;
         score += gainedScore;
@@ -1019,7 +1083,6 @@
         feedbackHeader.className = "flex items-center gap-2 font-black text-sm sm:text-base text-emerald-300";
         feedbackHeader.innerHTML = `<i class="fa-solid fa-face-smile-wink text-xl text-emerald-400"></i> 回答正确！精准掌握知识！ (+${gainedScore} 分)`;
         
-        // Combo UI
         if (combo > 1) {
           const comboBadge = document.getElementById('hudCombo');
           comboBadge.innerText = `连对 COMBO x${combo}`;
@@ -1058,7 +1121,6 @@
       document.getElementById('finalScore').innerText = score;
       document.getElementById('correctCount').innerText = `${correctCount} / 15`;
 
-      // Title/Badge Logic based on performance
       const badgeElem = document.getElementById('heroBadge');
       if (correctCount >= 14) {
         badgeElem.innerText = "🥇 传奇历史大元帅";
@@ -1071,7 +1133,6 @@
         badgeElem.className = "text-xs font-black text-purple-300 mt-2";
       }
 
-      // Victory Confetti
       playSound('victory');
       if (typeof confetti === 'function') {
         confetti({
@@ -1081,7 +1142,6 @@
         });
       }
 
-      // Save Score
       const entry = {
         name: currentPlayer.name,
         email: currentPlayer.email,
@@ -1094,7 +1154,6 @@
         await window.saveLeaderboardScore(entry);
       }
 
-      // Render Leaderboard
       renderLeaderboard();
     }
 
@@ -1119,7 +1178,6 @@
         if (idx === 1) rankBadge = `<span class="w-6 h-6 flex items-center justify-center text-slate-300 font-bold text-base">🥈</span>`;
         if (idx === 2) rankBadge = `<span class="w-6 h-6 flex items-center justify-center text-amber-500 font-bold text-base">🥉</span>`;
 
-        // Highlight current player
         const isSelf = (s.email === currentPlayer.email);
         const bgStyle = isSelf 
           ? "bg-purple-500/30 border border-pink-400 shadow-md" 
@@ -1152,7 +1210,7 @@
       document.getElementById('loginScreen').classList.remove('hidden');
     }
 
-    // TEACHER MODAL & EXCEL CSV EXPORT FUNCTIONS
+    // TEACHER MODAL, PASSWORD & DATA MANAGEMENT FUNCTIONS
     function openTeacherModal() {
       playSound('click');
       document.getElementById('teacherModal').classList.remove('hidden');
@@ -1167,6 +1225,7 @@
       const pass = document.getElementById('teacherPassInput').value.trim();
       const err = document.getElementById('teacherAuthError');
       
+      // CONFIDENTIAL TEACHER PASSWORD
       if (pass === '2020Hui%%') {
         err.classList.add('hidden');
         document.getElementById('teacherAuthBox').classList.add('hidden');
@@ -1179,19 +1238,17 @@
 
     async function loadTeacherTableData() {
       const tbody = document.getElementById('teacherTableBody');
-      tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i>正在加载学生成绩记录...</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-slate-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i>正在加载学生成绩记录...</td></tr>`;
 
-      let scores = window.cachedStudentScores || [];
-      if (!scores || scores.length === 0) {
-        if (window.fetchLeaderboard) {
-          scores = await window.fetchLeaderboard();
-        }
+      let scores = [];
+      if (window.fetchLeaderboard) {
+        scores = await window.fetchLeaderboard();
       }
 
       document.getElementById('totalStudentCount').innerText = scores.length;
 
       if (scores.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400">暂无任何学生答题记录。</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-slate-400">目前没有任何学生答题记录。</td></tr>`;
         return;
       }
 
@@ -1206,6 +1263,11 @@
             <td class="p-3 font-black text-pink-600">${s.score || 0}</td>
             <td class="p-3 font-bold text-emerald-600">${s.correct !== undefined ? s.correct : '-'} / 15</td>
             <td class="p-3 text-slate-400 text-[11px]">${timeStr}</td>
+            <td class="p-3 text-center">
+              <button onclick="deleteSingleRecord('${s.email}', '${s.name}')" class="px-2.5 py-1 bg-rose-100 hover:bg-rose-200 text-rose-700 text-[11px] font-bold rounded-lg transition" title="删除此记录">
+                <i class="fa-solid fa-trash-can mr-1"></i>删除
+              </button>
+            </td>
           </tr>
         `;
       });
@@ -1213,16 +1275,38 @@
       tbody.innerHTML = html;
     }
 
+    // Single Record Deletion
+    async function deleteSingleRecord(email, name) {
+      if (confirm(`确定要删除学生【${name}】(${email}) 的答题记录吗？`)) {
+        if (window.deleteSingleScoreCloud) {
+          await window.deleteSingleScoreCloud(email);
+        }
+        playSound('click');
+        await loadTeacherTableData();
+      }
+    }
+
+    // Clear All Records Confirmation
+    async function clearAllDataConfirm() {
+      if (confirm("⚠️ 确定要一键清空所有测试数据吗？\n清空后将无法恢复！")) {
+        if (window.clearAllScoresCloud) {
+          await window.clearAllScoresCloud();
+        }
+        playSound('click');
+        alert("已成功清空所有测试记录！");
+        await loadTeacherTableData();
+      }
+    }
+
     function exportToCSV() {
       playSound('click');
       const data = window.cachedStudentScores || [];
       if (data.length === 0) {
-        alert("目前没有可以导出的学生成绩数据！");
+        alert("目前没有可导出的数据！");
         return;
       }
 
-      // Add UTF-8 BOM to fix Excel Chinese character encoding
-      let csvContent = "\uFEFF";
+      let csvContent = "\uFEFF"; // UTF-8 BOM for Excel Chinese compatibility
       csvContent += "序号,学生姓名,MOE邮箱(MOE-DL),最终得分,答对题数(满分15),代表英雄,提交时间\n";
 
       data.forEach((item, index) => {
@@ -1246,7 +1330,7 @@
       document.body.removeChild(link);
     }
 
-    // Attach globals to window for inline HTML handlers
+    // Global exports for HTML event bindings
     window.selectAvatar = selectAvatar;
     window.handleStartGame = handleStartGame;
     window.nextQuestion = nextQuestion;
@@ -1255,6 +1339,8 @@
     window.openTeacherModal = openTeacherModal;
     window.closeTeacherModal = closeTeacherModal;
     window.verifyTeacherPass = verifyTeacherPass;
+    window.deleteSingleRecord = deleteSingleRecord;
+    window.clearAllDataConfirm = clearAllDataConfirm;
     window.exportToCSV = exportToCSV;
   </script>
 </body>
