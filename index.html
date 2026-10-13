@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="zh-MY">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5年级历史 单元5：地方领袖的起义与抗争 青春快问快答</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Google Fonts: Plus Jakarta Sans & Noto Sans SC -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@600;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Noto Sans SC', 'Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              purple: '#6366F1',
+              pink: '#EC4899',
+              teal: '#14B8A6',
+              amber: '#F59E0B',
+              indigo: '#4F46E5',
+              dark: '#0F172A',
+            }
+          },
+          animation: {
+            'bounce-soft': 'bounceSoft 2s infinite',
+            'float': 'float 3s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'pop': 'pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+          },
+          keyframes: {
+            bounceSoft: {
+              '0%, 100%': { transform: 'translateY(-4%)' },
+              '50%': { transform: 'translateY(0)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            pop: {
+              '0%': { transform: 'scale(0.92)', opacity: '0' },
+              '100%': { transform: 'scale(1)', opacity: '1' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #311042 100%);
+      font-family: 'Noto Sans SC', sans-serif;
+      user-select: none;
+      min-height: 100vh;
+    }
+
+    /* Youthful Glassmorphism Cards */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .glass-card-bright {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-gradient {
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.4);
+      transition: all 0.25s ease;
+    }
+    .btn-gradient:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 15px 30px -5px rgba(236, 72, 153, 0.6);
+    }
+    .btn-gradient:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    .btn-option {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(255, 255, 255, 0.07);
+      border: 2px solid rgba(255, 255, 255, 0.12);
+    }
+    .btn-option:hover:not(:disabled) {
+      border-color: #a855f7;
+      background: rgba(168, 85, 247, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(168, 85, 247, 0.5);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ec4899;
+    }
+  </style>
+</head>
+
+<body class="text-slate-100 flex flex-col justify-between items-center p-3 sm:p-5 md:p-8 overflow-x-hidden relative">
+
+  <!-- Floating Ambient Glow Elements -->
+  <div class="fixed -top-20 -left-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="fixed -bottom-20 -right-20 w-80 h-80 bg-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Top Navigation Header -->
+  <header class="w-full max-w-4xl flex flex-col sm:flex-row justify-between items-center mb-4 gap-3 z-10">
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 p-0.5 shadow-lg shadow-purple-500/30 animate-float">
+        <div class="w-full h-full bg-slate-900 rounded-[14px] flex items-center justify-center text-xl text-pink-400">
+          <i class="fa-solid fa-bolt-lightning"></i>
+        </div>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 text-[10px] font-black tracking-wider bg-pink-500/20 text-pink-300 rounded-full border border-pink-500/30 uppercase">Year 5 History</span>
+          <span class="text-xs text-purple-300/80">KSSR Semakan</span>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-200 to-pink-300">
+          单元 5：地方领袖的起义与抗争
+        </h1>
+      </div>
+    </div>
+
+    <!-- Quick Audio Controls & Badge -->
+    <div class="flex items-center gap-3">
+      <button id="soundToggleBtn" onclick="toggleAudio()" class="px-3.5 py-2 rounded-xl glass-card hover:bg-white/10 text-xs font-semibold text-purple-200 flex items-center gap-2 transition">
+        <i id="soundIcon" class="fa-solid fa-volume-high text-pink-400"></i>
+        <span id="soundText">音效：开启</span>
+      </button>
+      <button onclick="openTeacherModal()" class="px-3.5 py-2 rounded-xl bg-pink-500/20 border border-pink-400/40 text-xs font-bold text-pink-200 flex items-center gap-2 hover:bg-pink-500/30 transition shadow-lg">
+        <i class="fa-solid fa-file-excel text-emerald-400"></i> 教师专区 / 导出数据
+      </button>
+    </div>
+  </header>
+
+  <main class="w-full max-w-4xl flex-1 flex flex-col justify-center items-center z-10 relative my-2">
+
+    <!-- ==================== 1. REGISTRATION / LOGIN SCREEN ==================== -->
+    <div id="loginScreen" class="w-full max-w-lg glass-card p-6 sm:p-8 rounded-3xl text-center space-y-6 animate-pop">
+      
+      <!-- Screen Title -->
+      <div class="space-y-2">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-pink-500/30 text-pink-300 rounded-full text-xs font-bold shadow-sm">
+          <i class="fa-solid fa-gamepad text-pink-400"></i> 15 题全答式·历史挑战赛
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-black text-white tracking-wide">
+          开启你的历史挑战之旅！
+        </h2>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          答对积累积分，答错也能看详细解析！<br>完整回答所有 15 题，争夺英雄榜高分荣誉！
+        </p>
+      </div>
+
+      <!-- Avatar Selector -->
+      <div class="space-y-2 text-left">
+        <label class="block text-xs font-bold text-purple-200">
+          <i class="fa-solid fa-user-astronaut text-pink-400 mr-1"></i> 选择你的代表英雄形象：
+        </label>
+        <div class="grid grid-cols-5 gap-2" id="avatarList">
+          <button type="button" onclick="selectAvatar(0)" class="avatar-btn p-2.5 rounded-2xl bg-white/10 border-2 border-pink-400 hover:scale-105 transition flex flex-col items-center">
+            <span class="text-2xl">🗡️</span>
+            <span class="text-[10px] font-bold text-purple-200 mt-1">多赛益</span>
+          </button>
+          <button type="button" onclick="selectAvatar(1)" class="avatar-btn p-2.5 rounded-2xl bg-white/5 border-2 border-transparent hover:border-pink-400 hover:scale-105 transition flex flex-col items-center">
+            <span class="text-2xl">🛡️</span>
+            <span class="text-[10px] font-bold text-purple-200 mt-1">仁答</span>
+          </button>
+          <button type="button" onclick="selectAvatar(2)" class="avatar-btn p-2.5 rounded-2xl bg-white/5 border-2 border-transparent hover:border-pink-400 hover:scale-105 transition flex flex-col items-center">
+            <span class="text-2xl">🏹</span>
+            <span class="text-[10px] font-bold text-purple-200 mt-1">末沙烈</span>
+          </button>
+          <button type="button" onclick="selectAvatar(3)" class="avatar-btn p-2.5 rounded-2xl bg-white/5 border-2 border-transparent hover:border-pink-400 hover:scale-105 transition flex flex-col items-center">
+            <span class="text-2xl">⚔️</span>
+            <span class="text-[10px] font-bold text-purple-200 mt-1">督江谷</span>
+          </button>
+          <button type="button" onclick="selectAvatar(4)" class="avatar-btn p-2.5 rounded-2xl bg-white/5 border-2 border-transparent hover:border-pink-400 hover:scale-105 transition flex flex-col items-center">
+            <span class="text-2xl">📜</span>
+            <span class="text-[10px] font-bold text-purple-200 mt-1">林梦</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Registration Form -->
+      <form id="loginForm" onsubmit="handleStartGame(event)" class="space-y-4 text-left">
+        <div>
+          <label class="block text-xs font-bold text-purple-200 mb-1">
+            <i class="fa-solid fa-id-card text-pink-400 mr-1"></i> 学生姓名（中文 / 英文）：
+          </label>
+          <input type="text" id="playerNameInput" required placeholder="例如: 李小明 / Tan Ah Kow" 
+            class="w-full px-4 py-3 rounded-2xl bg-slate-900/80 border border-purple-500/40 text-white placeholder-slate-500 focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-400/30 text-sm transition">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-purple-200 mb-1">
+            <i class="fa-solid fa-envelope text-pink-400 mr-1"></i> MOE 学生邮箱 (MOE-DL Email)：
+          </label>
+          <input type="email" id="playerEmailInput" required placeholder="例如: m-12345678@moe-dl.edu.my" 
+            class="w-full px-4 py-3 rounded-2xl bg-slate-900/80 border border-purple-500/40 text-white placeholder-slate-500 focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-400/30 text-sm transition">
+          <p class="text-[11px] text-pink-300/80 mt-1.5 flex items-center gap-1">
+            <i class="fa-solid fa-circle-info text-pink-400"></i> 必须以 <strong class="text-pink-200 underline">@moe-dl.edu.my</strong> 结尾方可记录成绩。
+          </p>
+        </div>
+
+        <!-- Custom Validation Error Message -->
+        <div id="loginError" class="hidden p-3.5 rounded-2xl bg-pink-950/80 border border-pink-500 text-pink-200 text-xs flex items-center gap-2 animate-shake">
+          <i class="fa-solid fa-triangle-exclamation text-pink-400 text-base"></i>
+          <span id="loginErrorMsg">请输入有效的 MOE-DL 邮箱账号！</span>
+        </div>
+
+        <button type="submit" class="w-full btn-gradient py-3.5 rounded-2xl text-white font-black text-base shadow-xl flex items-center justify-center gap-2">
+          <span>开始 15 题练习挑战</span>
+          <i class="fa-solid fa-arrow-right-long"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- ==================== 2. GAMEPLAY SCREEN ==================== -->
+    <div id="gameScreen" class="hidden w-full space-y-4 animate-pop">
+      
+      <!-- Modern RPG Status HUD -->
+      <div class="glass-card p-4 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4">
+        <!-- Player Info -->
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <div id="hudAvatar" class="text-3xl bg-gradient-to-tr from-purple-600 to-pink-500 p-2.5 rounded-2xl shadow-md">🗡️</div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="hudPlayerName" class="font-black text-white text-base">---</span>
+              <span id="hudCombo" class="hidden px-2.5 py-0.5 bg-gradient-to-r from-amber-500 to-pink-500 text-slate-900 rounded-full text-[10px] font-black animate-pulse shadow-md">
+                连对 COMBO x2
+              </span>
+            </div>
+            <div class="text-xs text-purple-200/80 flex items-center gap-1 mt-0.5">
+              <i class="fa-solid fa-bullseye text-pink-400"></i> 正在进行全程巩固练习
+            </div>
+          </div>
+        </div>
+
+        <!-- Question Counter & Score -->
+        <div class="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-4 border-t sm:border-t-0 border-white/10 pt-3 sm:pt-0">
+          <div class="text-center px-3 py-1 rounded-2xl bg-white/5 border border-white/10">
+            <div class="text-[10px] text-purple-300 font-bold uppercase">获得总分</div>
+            <div id="scoreDisplay" class="text-xl font-black text-pink-300">0</div>
+          </div>
+          <div class="text-center px-4 py-1.5 rounded-2xl bg-gradient-to-r from-indigo-500/30 to-purple-500/30 border border-purple-400/30">
+            <div class="text-[10px] text-purple-200 font-bold uppercase">答题进度</div>
+            <div class="text-sm font-black text-white">
+              <span id="currentQNum" class="text-pink-400 text-lg">1</span> / 15
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="glass-card p-5 sm:p-8 rounded-3xl relative">
+        
+        <!-- Timer Progress Bar -->
+        <div class="w-full bg-slate-900/80 rounded-full h-2.5 mb-5 overflow-hidden border border-white/10 p-0.5">
+          <div id="timerBar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full rounded-full transition-all duration-100 ease-linear" style="width: 100%;"></div>
+        </div>
+
+        <!-- Question Header & Text -->
+        <div class="space-y-3 mb-6">
+          <div class="flex justify-between items-center">
+            <span id="qTag" class="px-3 py-1 bg-purple-500/20 text-purple-300 border border-purple-400/30 rounded-full text-xs font-bold">
+              第 1 题
+            </span>
+            <span id="timerText" class="text-xs font-mono font-bold text-pink-300 flex items-center gap-1">
+              <i class="fa-solid fa-stopwatch text-pink-400"></i>剩余时间: 20s
+            </span>
+          </div>
+          <h3 id="questionText" class="text-base sm:text-xl font-black leading-relaxed text-white">
+            题目加载中...
+          </h3>
+        </div>
+
+        <!-- Answer Options Grid -->
+        <div id="optionsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-4">
+          <!-- Options injected via JS -->
+        </div>
+
+        <!-- Feedback & Detailed Explanation Banner -->
+        <div id="explanationBox" class="hidden p-4 sm:p-5 rounded-2xl space-y-3 border animate-pop">
+          <div class="flex items-center gap-2 font-black text-sm sm:text-base" id="feedbackHeader">
+            <!-- Correct / Incorrect Banner -->
+          </div>
+          <p id="explanationText" class="text-xs sm:text-sm text-slate-200 leading-relaxed bg-black/20 p-3 rounded-xl">
+            <!-- Explanation Text -->
+          </p>
+          <div class="pt-1 flex justify-end">
+            <button id="nextBtn" onclick="nextQuestion()" class="btn-gradient px-6 py-2.5 rounded-xl text-white font-black text-xs sm:text-sm flex items-center gap-2 shadow-lg">
+              <span>下一题</span>
+              <i class="fa-solid fa-circle-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==================== 3. END GAME & LEADERBOARD SCREEN ==================== -->
+    <div id="endScreen" class="hidden w-full max-w-2xl glass-card p-6 sm:p-8 rounded-3xl space-y-6 text-center animate-pop">
+      
+      <!-- Victory Banner -->
+      <div class="space-y-2">
+        <div id="victoryIcon" class="text-6xl animate-bounce-soft">🏆</div>
+        <h2 id="endTitle" class="text-2xl sm:text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-pink-300 to-purple-300">
+          挑战完成！历史知识大丰收！
+        </h2>
+        <p id="endSubtitle" class="text-xs text-slate-300">
+          你已成功完成单元 5 全部 15 道练习题！
+        </p>
+      </div>
+
+      <!-- Player Score Summary Box -->
+      <div class="grid grid-cols-3 gap-3 bg-slate-900/60 p-4 rounded-2xl border border-white/10">
+        <div class="p-2">
+          <div class="text-[10px] font-bold text-purple-300">最终得分</div>
+          <div id="finalScore" class="text-2xl sm:text-3xl font-black text-pink-400">0</div>
+        </div>
+        <div class="p-2 border-x border-white/10">
+          <div class="text-[10px] font-bold text-purple-300">答对题数</div>
+          <div id="correctCount" class="text-2xl sm:text-3xl font-black text-emerald-400">0 / 15</div>
+        </div>
+        <div class="p-2">
+          <div class="text-[10px] font-bold text-purple-300">获得称号</div>
+          <div id="heroBadge" class="text-xs font-black text-amber-300 mt-2">抗暴历史智多星</div>
+        </div>
+      </div>
+
+      <!-- Leaderboard Section -->
+      <div class="space-y-3 text-left">
+        <div class="flex justify-between items-center border-b border-white/10 pb-2">
+          <h3 class="font-bold text-purple-200 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-trophy text-amber-400"></i>
+            <span>英雄荣耀榜 (MOE 专属排行榜)</span>
+          </h3>
+          <span class="text-[10px] text-purple-300/70">按最高得分与用时排序</span>
+        </div>
+
+        <!-- Leaderboard Table Container -->
+        <div class="max-h-56 overflow-y-auto space-y-2 pr-1" id="leaderboardList">
+          <div class="text-center py-4 text-xs text-purple-300/60">正在加载排行榜数据...</div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3 pt-2">
+        <button onclick="restartGame()" class="flex-1 btn-gradient py-3.5 rounded-2xl text-white font-black text-sm flex items-center justify-center gap-2">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span>再次挑战冲高分</span>
+        </button>
+        <button onclick="openTeacherModal()" class="flex-1 py-3.5 rounded-2xl bg-emerald-600/80 hover:bg-emerald-500 border border-emerald-400/50 text-white font-black text-sm flex items-center justify-center gap-2 transition shadow-lg">
+          <i class="fa-solid fa-download"></i>
+          <span>教师下载成绩单 (Excel)</span>
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==================== TEACHER MANAGEMENT MODAL ==================== -->
+  <div id="teacherModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden animate-pop">
+    <div class="glass-card-bright w-full max-w-3xl rounded-3xl p-6 sm:p-8 text-slate-900 space-y-5 relative max-h-[90vh] overflow-y-auto">
+      
+      <!-- Close Button -->
+      <button onclick="closeTeacherModal()" class="absolute top-5 right-5 w-9 h-9 bg-slate-200 hover:bg-slate-300 rounded-full text-slate-700 flex items-center justify-center font-bold transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center text-2xl shadow-md">
+          <i class="fa-solid fa-file-excel"></i>
+        </div>
+        <div>
+          <h3 class="text-xl font-black text-slate-800">教师数据管理与成绩导出</h3>
+          <p class="text-xs text-slate-500">查看并导出所有学生完成 15 题练习的完整成绩记录</p>
+        </div>
+      </div>
+
+      <!-- Password Guard (Simple Verification) -->
+      <div id="teacherAuthBox" class="p-5 rounded-2xl bg-slate-100 border border-slate-200 space-y-3">
+        <label class="block text-xs font-bold text-slate-700">
+          <i class="fa-solid fa-lock text-pink-500 mr-1"></i> 请输入教师管理密码：
+        </label>
+        <div class="flex gap-2">
+          <input type="password" id="teacherPassInput" placeholder="请输入密码" 
+            class="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500">
+          <button onclick="verifyTeacherPass()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-xl transition">
+            验证进入
+          </button>
+        </div>
+        <p id="teacherAuthError" class="text-xs text-pink-600 hidden font-bold">密码不正确，请重试！</p>
+      </div>
+
+      <!-- Main Teacher Data Dashboard (Shown after verify) -->
+      <div id="teacherDataContent" class="hidden space-y-4">
+        <!-- Actions & Stats Bar -->
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-3 bg-slate-100 p-3.5 rounded-2xl border border-slate-200">
+          <div class="text-xs font-bold text-slate-700">
+            📊 已提交人数：<span id="totalStudentCount" class="text-pink-600 font-black text-base">0</span> 人
+          </div>
+          <button onclick="exportToCSV()" class="w-full sm:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 shadow-md transition">
+            <i class="fa-solid fa-file-arrow-down text-lg"></i>
+            <span>下载全班 Excel 成绩单 (.csv)</span>
+          </button>
+        </div>
+
+        <!-- Student Data Table -->
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-inner max-h-80 overflow-y-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-slate-800 text-white font-bold sticky top-0">
+                <th class="p-3">#</th>
+                <th class="p-3">学生姓名</th>
+                <th class="p-3">MOE 邮箱</th>
+                <th class="p-3">得分</th>
+                <th class="p-3">答对题数</th>
+                <th class="p-3">提交时间</th>
+              </tr>
+            </thead>
+            <tbody id="teacherTableBody" class="divide-y divide-slate-200 bg-white text-slate-700">
+              <!-- Injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w-full max-w-4xl text-center py-3 border-t border-white/10 text-[11px] text-slate-400 z-10 flex justify-between items-center px-2">
+    <p>5年级历史 单元5：地方领袖的起义与抗争 巩固练习 | KSSR Semakan 课程标准</p>
+    <button onclick="openTeacherModal()" class="text-xs text-pink-300/80 hover:text-pink-300 underline flex items-center gap-1">
+      <i class="fa-solid fa-user-gear"></i> 教师专区
+    </button>
+  </footer>
+
+  <script type="module">
+    // Firebase Modular Imports
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, doc, setDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // App Initialization
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'sejarah-yr5-u5-quiz';
+    let db = null;
+    let auth = null;
+    let currentUser = null;
+
+    // Check Firebase configuration
+    if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+      try {
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth(app);
+
+        // Auth handling according to rules
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+          signInWithCustomToken(auth, __initial_auth_token).catch(err => {
+            console.log("Token auth error, fallback to anonymous", err);
+            signInAnonymously(auth);
+          });
+        } else {
+          signInAnonymously(auth);
+        }
+
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            currentUser = user;
+          }
+        });
+      } catch (e) {
+        console.warn("Firebase initialization skipped, using local mode:", e);
+      }
+    }
+
+    // Export Firebase functions to window for game script access
+    window.saveLeaderboardScore = async function(entry) {
+      if (db && currentUser) {
+        try {
+          const path = ['artifacts', appId, 'public', 'data', 'leaderboard'];
+          const userDocRef = doc(db, path[0], path[1], path[2], path[3], path[4], currentUser.uid);
+          await setDoc(userDocRef, {
+            name: entry.name,
+            email: entry.email,
+            score: entry.score,
+            correct: entry.correct,
+            avatar: entry.avatar,
+            timestamp: Date.now()
+          }, { merge: true });
+        } catch (e) {
+          console.error("Error saving to Firestore:", e);
+        }
+      }
+      // Save locally as fallback
+      saveLocalScore(entry);
+    };
+
+    window.fetchLeaderboard = async function() {
+      let scores = [];
+      if (db && currentUser) {
+        try {
+          const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'leaderboard');
+          const snapshot = await getDocs(colRef);
+          snapshot.forEach(docSnap => {
+            scores.push(docSnap.data());
+          });
+        } catch (e) {
+          console.error("Error fetching Firestore leaderboard:", e);
+        }
+      }
+      if (scores.length === 0) {
+        scores = getLocalScores();
+      }
+      // Sort in JS (Rule 2: No complex queries in Firestore)
+      scores.sort((a, b) => b.score - a.score);
+      
+      // Store globally for teacher CSV export
+      window.cachedStudentScores = scores;
+      return scores;
+    };
+
+    function saveLocalScore(entry) {
+      const existing = getLocalScores();
+      existing.push(entry);
+      existing.sort((a, b) => b.score - a.score);
+      localStorage.setItem('sejarah_u5_scores_v2', JSON.stringify(existing.slice(0, 50)));
+    }
+
+    function getLocalScores() {
+      try {
+        const data = localStorage.getItem('sejarah_u5_scores_v2');
+        return data ? JSON.parse(data) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+  </script>
+
+  <script>
+    // WEB AUDIO API SOUND ENGINE
+    let audioCtx = null;
+    let isSoundEnabled = true;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function toggleAudio() {
+      isSoundEnabled = !isSoundEnabled;
+      const soundIcon = document.getElementById('soundIcon');
+      const soundText = document.getElementById('soundText');
+      if (isSoundEnabled) {
+        soundIcon.className = "fa-solid fa-volume-high text-pink-400";
+        soundText.innerText = "音效：开启";
+        playSound('click');
+      } else {
+        soundIcon.className = "fa-solid fa-volume-xmark text-slate-500";
+        soundText.innerText = "音效：静音";
+      }
+    }
+
+    function playSound(type) {
+      if (!isSoundEnabled) return;
+      initAudio();
+      if (!audioCtx) return;
+
+      const now = audioCtx.currentTime;
+
+      if (type === 'click') {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(450, now);
+        osc.frequency.exponentialRampToValueAtTime(900, now + 0.05);
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.05);
+      } else if (type === 'correct') {
+        // Cheerful Bell / Upward Arpeggio
+        const notes = [523.25, 659.25, 783.99, 1046.50];
+        notes.forEach((freq, i) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + i * 0.08);
+          gain.gain.setValueAtTime(0.2, now + i * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.25);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + i * 0.08);
+          osc.stop(now + i * 0.08 + 0.25);
+        });
+      } else if (type === 'wrong') {
+        // Gentle wrong buzzer
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.exponentialRampToValueAtTime(140, now + 0.25);
+        gain.gain.setValueAtTime(0.18, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      } else if (type === 'victory') {
+        // Fanfare
+        const notes = [440, 554.37, 659.25, 880, 1046.5];
+        notes.forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.value = freq;
+          gain.gain.setValueAtTime(0.2, now + idx * 0.1);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.1 + 0.35);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + idx * 0.1);
+          osc.stop(now + idx * 0.1 + 0.35);
+        });
+      }
+    }
+
+    // 15 QUESTIONS DATASET WITH ACCURATE OPTIONS & DETAILED EXPLANATIONS
+    const quizData = [
+      {
+        id: 1,
+        question: "1. 多赛益（Dol Said）在南宁发动抗争的主要原因是什么？",
+        options: [
+          "A. 英国人宣称南宁是他们的殖民地并试图征税",
+          "B. 英国人禁止当地人民开垦农田",
+          "C. 英国人强征当地人民建造公路",
+          "D. 英国人干预当地伊斯兰教法事宜"
+        ],
+        answer: 0,
+        explanation: "课本解析：英国人宣称南宁为其殖民地，强制要求南宁缴纳十分之一的土产税，多赛益坚决拒绝并展开反抗。"
+      },
+      {
+        id: 2,
+        question: "2. 仁答（Rentap）在砂拉越率领伊班人抗争，主要是因为詹姆斯·布洛克对伊班人作出了什么指控？",
+        options: [
+          "A. 指控伊班人私自向商船征税",
+          "B. 指控伊班人是海盗",
+          "C. 指控伊班人毁坏河流堡垒",
+          "D. 指控伊班人拒绝学习英文"
+        ],
+        answer: 1,
+        explanation: "课本解析：詹姆斯·布洛克（James Brooke）诬指斯可让河的伊班人为海盗，并摧毁其村庄，引发仁答率众反抗。"
+      },
+      {
+        id: 3,
+        question: "3. 沙里夫·马沙荷（Syarif Masahor）在砂拉越展开抗争，主要是为了反抗詹姆斯·布洛克占领哪一个地区？",
+        options: [
+          "A. 斯可让（Skrang）",
+          "B. 泗里街（Sarikei）",
+          "C. 古晋（Kuching）",
+          "D. 诗巫（Sibu）"
+        ],
+        answer: 1,
+        explanation: "课本解析：詹姆斯·布洛克侵占泗里街（Sarikei），剥夺了沙里夫·马沙荷在当地的统治权，引发其起义。"
+      },
+      {
+        id: 4,
+        question: "4. 在霹雳州，拿督玛哈惹惹里（Dato' Maharaja Lela）策划谋杀英国参政司毕治（J.W.W. Birch）的核心原因是什么？",
+        options: [
+          "A. 毕治强迫当地人民改变宗教信仰",
+          "B. 毕治干预马来人的传统习俗，导致酋长失去权力",
+          "C. 毕治禁止马来人在河流区域捕鱼",
+          "D. 毕治拒绝与当地苏丹进行谈判"
+        ],
+        answer: 1,
+        explanation: "课本解析：英国参政司毕治干预马来传统习俗与废除奴隶制，并夺取征税权，导致当地酋长丧失原有权力。"
+      },
+      {
+        id: 5,
+        question: "5. 森美兰的严端安达（Yamtuan Antah）率领人民抵抗英国人，是因为英国人在哪一个地区的干政行为？",
+        options: [
+          "A. 神安池（Seri Menanti）",
+          "B. 双溪乌绒（Sungai Ujong）",
+          "C. 林茂（Rembau）",
+          "D. 芦骨（Lukut）"
+        ],
+        answer: 1,
+        explanation: "课本解析：英国人在双溪乌绒（Sungai Ujong）干政，支持拿督格拉那并威胁神安池的领土主权，引发严端安达的反抗。"
+      },
+      {
+        id: 6,
+        question: "6. 彭亨州的拿督巴哈曼（Dato' Bahaman）发动抗争后，曾成功夺回哪一个重要据点？",
+        options: [
+          "A. 遮兰安拜（Jeram Ampai）",
+          "B. 鲁勃德鲁亚（Lubuk Terua）",
+          "C. 双溪士曼丹（Sungai Semantan）",
+          "D. 淡马鲁（Temerloh）"
+        ],
+        answer: 1,
+        explanation: "课本解析：拿督巴哈曼发动进攻，成功击退英国军队并夺回了鲁勃德鲁亚（Lubuk Terua）堡垒。"
+      },
+      {
+        id: 7,
+        question: "7. 末沙烈（Mat Salleh）在沙巴袭击了英国北婆罗洲公司位于哪里的堡垒？",
+        options: [
+          "A. 佳亚岛（Pulau Gaya）",
+          "B. 山打根（Sandakan）",
+          "C. 孟加达（Menggatal）",
+          "D. 下南南（Inanam）"
+        ],
+        answer: 0,
+        explanation: "课本解析：1897年，末沙烈率领部下进攻并摧毁了英国北婆罗洲公司（SBUK）位于佳亚岛（Pulau Gaya）的基地堡垒。"
+      },
+      {
+        id: 8,
+        question: "8. 沙巴毛律族（Murut）领袖安德农（Antenom）发动起义，直接导火线是英国北婆罗洲公司做了什么事？",
+        options: [
+          "A. 没收毛律族的传统猎枪与武器",
+          "B. 强征毛律族人建造公路",
+          "C. 禁止毛律族人进行农业耕种",
+          "D. 强行拆除毛律族的长屋村庄"
+        ],
+        answer: 1,
+        explanation: "课本解析：英国北婆罗洲公司强征毛律人建造穿过丛林的公路，并征收地税和禁止砍伐森林开垦，引发安德农起义。"
+      },
+      {
+        id: 9,
+        question: "9. 吉兰丹的地方领袖督江谷（Tok Janggut）发动抗争，主要是反对英国推行的什么制度？",
+        options: [
+          "A. 参政司制度（Sistem Residen）",
+          "B. 顾问制度（Sistem Penasihat）及新税制",
+          "C. 邦咯条约（Perjanjian Pangkor）",
+          "D. 奴隶买卖制度"
+        ],
+        answer: 1,
+        explanation: "课本解析：英国在吉兰丹推行顾问官制度（Sistem Penasihat），强制实施繁重的土地及农作物新税制，引发督江谷抗争。"
+      },
+      {
+        id: 10,
+        question: "10. 在登嘉楼，哈芝阿都拉曼林梦（Haji Abdul Rahman Limbong）除了与农民一同反对新土地法令外，还在事件中扮演了什么关键角色？",
+        options: [
+          "A. 担任被捕农民的辩护律师并成功使他们获释",
+          "B. 担任英国顾问官的法律咨询人员",
+          "C. 协助英国殖民政府向农民征收农田税",
+          "D. 协助英国人起草地方土地法令"
+        ],
+        answer: 0,
+        explanation: "课本解析：哈芝阿都拉曼林梦是一名精通法律的宗教领袖，他出任法庭辩护律师，成功为反对土地法而被捕的农民辩护解围。"
+      },
+      {
+        id: 11,
+        question: "11. 根据课本总结，地方领袖（Heroes）发动起义与抗争的主要目的是什么？",
+        options: [
+          "A. 争夺地方上的商业与矿业垄断权",
+          "B. 抵抗外国势力的干政和殖民统治",
+          "C. 协助外来公司开采本地天然资源",
+          "D. 推翻本地苏丹与统治者的统治"
+        ],
+        answer: 1,
+        explanation: "课本总结：地方英雄发动反抗的根本核心，是为了维护地方主权、捍卫人民利益，抵抗外国势力的干政与殖民统治。"
+      },
+      {
+        id: 12,
+        question: "12. 下列哪一位地方领袖与其抗争的主要州属对应是正确的？",
+        options: [
+          "A. 督江谷 —— 登嘉楼",
+          "B. 拿督巴哈曼 —— 彭亨",
+          "C. 哈芝阿都拉曼林梦 —— 吉兰丹",
+          "D. 严端安达 —— 霹雳"
+        ],
+        answer: 1,
+        explanation: "课本解析：拿督巴哈曼是彭亨州（Pahang）的地方领袖；督江谷属于吉兰丹；哈芝阿都拉曼林梦属于登嘉楼；严端安达属于森美兰。"
+      },
+      {
+        id: 13,
+        question: "13. 安德农（Antenom）为了率领毛律族勇士对抗英国北婆罗洲公司，曾在哪里建有防守堡垒？",
+        options: [
+          "A. 担布南（Tambunan）",
+          "B. 士兰吉河（Sungai Salangit）",
+          "C. 哥打毛律（Kota Belud）",
+          "D. 斗湖（Tawau）"
+        ],
+        answer: 1,
+        explanation: "课本解析：安德农率领毛律勇士在士兰吉河（Sungai Salangit）建立了坚固的地下防御堡垒抵抗敌军。"
+      },
+      {
+        id: 14,
+        question: "14. 拿督巴哈曼（Dato' Bahaman）丧失了哪项传统权利，从而引发了他对英国殖民者的抗争？",
+        options: [
+          "A. 征税的权力",
+          "B. 审判罪犯的权力",
+          "C. 册封地方官员的权力",
+          "D. 开采金矿的权力"
+        ],
+        answer: 0,
+        explanation: "课本解析：英国人在彭亨建立治安警察局并剥夺了拿督巴哈曼作为地方酋长的征税权（Hak Mengutip Cukai）。"
+      },
+      {
+        id: 15,
+        question: "15. 末沙烈（Mat Salleh）对英国北婆罗洲公司感到不满，主要是因为该公司拒绝承认他是哪些地区的领袖？",
+        options: [
+          "A. 古晋、诗巫与美里",
+          "B. 山打根、孟加达、下南南和佳亚岛",
+          "C. 亚庇、斗亚兰与斗湖",
+          "D. 纳闽、庇劳与神山"
+        ],
+        answer: 1,
+        explanation: "课本解析：SBUK公司拒绝承认末沙烈为山打根、孟加达（Menggatal）、下南南（Inanam）及佳亚岛的地方领袖，引发强烈抗争。"
+      }
+    ];
+
+    // Avatars
+    const avatars = ["🗡️", "🛡️", "🏹", "⚔️", "📜"];
+    let selectedAvatarIdx = 0;
+
+    // Game state variables
+    let currentPlayer = { name: "", email: "", avatar: "🗡️" };
+    let currentQIndex = 0;
+    let score = 0;
+    let correctCount = 0;
+    let combo = 0;
+    let timerInterval = null;
+    let timeLeft = 20;
+
+    function selectAvatar(idx) {
+      playSound('click');
+      selectedAvatarIdx = idx;
+      const btns = document.querySelectorAll('.avatar-btn');
+      btns.forEach((btn, i) => {
+        if (i === idx) {
+          btn.className = "avatar-btn p-2.5 rounded-2xl bg-white/10 border-2 border-pink-400 hover:scale-105 transition flex flex-col items-center shadow-lg";
+        } else {
+          btn.className = "avatar-btn p-2.5 rounded-2xl bg-white/5 border-2 border-transparent hover:border-pink-400/50 hover:scale-105 transition flex flex-col items-center";
+        }
+      });
+    }
+
+    // Email validation requiring @moe-dl.edu.my
+    function validateMoeEmail(email) {
+      const trimmed = email.trim().toLowerCase();
+      return trimmed.endsWith('@moe-dl.edu.my') && trimmed.length > 15;
+    }
+
+    function handleStartGame(e) {
+      e.preventDefault();
+      playSound('click');
+      
+      const nameInput = document.getElementById('playerNameInput').value.trim();
+      const emailInput = document.getElementById('playerEmailInput').value.trim();
+      const errorDiv = document.getElementById('loginError');
+      const errorMsg = document.getElementById('loginErrorMsg');
+
+      if (!nameInput) {
+        errorMsg.innerText = "请输入您的姓名！";
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+
+      if (!validateMoeEmail(emailInput)) {
+        errorMsg.innerText = "电子邮箱格式错误！必须以 @moe-dl.edu.my 结尾。";
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+
+      errorDiv.classList.add('hidden');
+
+      // Setup Player
+      currentPlayer = {
+        name: nameInput,
+        email: emailInput,
+        avatar: avatars[selectedAvatarIdx]
+      };
+
+      // HUD Setup
+      document.getElementById('hudAvatar').innerText = currentPlayer.avatar;
+      document.getElementById('hudPlayerName').innerText = currentPlayer.name;
+
+      // Switch screens
+      document.getElementById('loginScreen').classList.add('hidden');
+      document.getElementById('gameScreen').classList.remove('hidden');
+
+      // Reset game parameters
+      currentQIndex = 0;
+      score = 0;
+      correctCount = 0;
+      combo = 0;
+
+      document.getElementById('scoreDisplay').innerText = score;
+      document.getElementById('hudCombo').classList.add('hidden');
+
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      if (currentQIndex >= quizData.length) {
+        endGame();
+        return;
+      }
+
+      const q = quizData[currentQIndex];
+
+      // Update question text and headers
+      document.getElementById('currentQNum').innerText = currentQIndex + 1;
+      document.getElementById('qTag').innerText = `第 ${currentQIndex + 1} / 15 题`;
+      document.getElementById('questionText').innerText = q.question;
+
+      // Hide explanation box
+      document.getElementById('explanationBox').classList.add('hidden');
+
+      // Render Answer Options
+      const optionsContainer = document.getElementById('optionsContainer');
+      optionsContainer.innerHTML = '';
+
+      q.options.forEach((optText, idx) => {
+        const btn = document.createElement('button');
+        btn.className = "btn-option w-full p-4 rounded-2xl text-left text-xs sm:text-sm text-slate-100 font-medium flex items-center justify-between";
+        btn.innerHTML = `<span>${optText}</span> <i class="fa-regular fa-circle text-purple-300/40"></i>`;
+        btn.onclick = () => selectAnswer(idx);
+        optionsContainer.appendChild(btn);
+      });
+
+      // Start timer
+      startTimer();
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      timeLeft = 20;
+      const timerBar = document.getElementById('timerBar');
+      const timerText = document.getElementById('timerText');
+
+      timerBar.style.width = '100%';
+      timerText.innerHTML = `<i class="fa-solid fa-stopwatch text-pink-400"></i>剩余时间: 20s`;
+
+      timerInterval = setInterval(() => {
+        timeLeft -= 0.1;
+        const percentage = (timeLeft / 20) * 100;
+        timerBar.style.width = `${Math.max(0, percentage)}%`;
+        timerText.innerHTML = `<i class="fa-solid fa-stopwatch text-pink-400"></i>剩余时间: ${Math.ceil(timeLeft)}s`;
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          selectAnswer(-1); // Time out answer
+        }
+      }, 100);
+    }
+
+    function selectAnswer(selectedIndex) {
+      clearInterval(timerInterval);
+      const q = quizData[currentQIndex];
+      const isCorrect = (selectedIndex === q.answer);
+
+      // Disable option buttons & style answer status
+      const buttons = document.querySelectorAll('#optionsContainer button');
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === q.answer) {
+          btn.className = "w-full p-4 rounded-2xl text-left text-xs sm:text-sm text-emerald-100 font-bold bg-emerald-500/25 border-2 border-emerald-400 flex items-center justify-between shadow-lg animate-pop";
+          btn.innerHTML += ' <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>';
+        } else if (idx === selectedIndex) {
+          btn.className = "w-full p-4 rounded-2xl text-left text-xs sm:text-sm text-pink-100 font-medium bg-pink-500/20 border-2 border-pink-500 flex items-center justify-between";
+          btn.innerHTML += ' <i class="fa-solid fa-circle-xmark text-pink-400 text-lg"></i>';
+        } else {
+          btn.className += " opacity-40";
+        }
+      });
+
+      // Feedback Box
+      const explanationBox = document.getElementById('explanationBox');
+      const feedbackHeader = document.getElementById('feedbackHeader');
+      const explanationText = document.getElementById('explanationText');
+
+      explanationBox.classList.remove('hidden');
+
+      if (isCorrect) {
+        playSound('correct');
+        combo++;
+        correctCount++;
+        
+        // Bonus calculation
+        const speedBonus = Math.round(timeLeft * 5);
+        const gainedScore = 100 + (combo > 1 ? combo * 25 : 0) + speedBonus;
+        score += gainedScore;
+
+        document.getElementById('scoreDisplay').innerText = score;
+
+        explanationBox.className = "p-4 sm:p-5 rounded-2xl space-y-3 border border-emerald-500/40 bg-emerald-950/40 animate-pop";
+        feedbackHeader.className = "flex items-center gap-2 font-black text-sm sm:text-base text-emerald-300";
+        feedbackHeader.innerHTML = `<i class="fa-solid fa-face-smile-wink text-xl text-emerald-400"></i> 回答正确！精准掌握知识！ (+${gainedScore} 分)`;
+        
+        // Combo UI
+        if (combo > 1) {
+          const comboBadge = document.getElementById('hudCombo');
+          comboBadge.innerText = `连对 COMBO x${combo}`;
+          comboBadge.classList.remove('hidden');
+        }
+
+      } else {
+        playSound('wrong');
+        combo = 0;
+        document.getElementById('hudCombo').classList.add('hidden');
+
+        explanationBox.className = "p-4 sm:p-5 rounded-2xl space-y-3 border border-pink-500/40 bg-pink-950/40 animate-pop";
+        feedbackHeader.className = "flex items-center gap-2 font-black text-sm sm:text-base text-pink-300";
+        if (selectedIndex === -1) {
+          feedbackHeader.innerHTML = `<i class="fa-solid fa-clock text-xl text-pink-400"></i> 答题超时！没关系，看一下解析继续加油！`;
+        } else {
+          feedbackHeader.innerHTML = `<i class="fa-solid fa-circle-exclamation text-xl text-pink-400"></i> 差了一点点！一起来温习这道题的知识点吧：`;
+        }
+      }
+
+      explanationText.innerText = q.explanation;
+    }
+
+    function nextQuestion() {
+      playSound('click');
+      currentQIndex++;
+      loadQuestion();
+    }
+
+    async function endGame() {
+      clearInterval(timerInterval);
+
+      document.getElementById('gameScreen').classList.add('hidden');
+      document.getElementById('endScreen').classList.remove('hidden');
+
+      document.getElementById('finalScore').innerText = score;
+      document.getElementById('correctCount').innerText = `${correctCount} / 15`;
+
+      // Title/Badge Logic based on performance
+      const badgeElem = document.getElementById('heroBadge');
+      if (correctCount >= 14) {
+        badgeElem.innerText = "🥇 传奇历史大元帅";
+        badgeElem.className = "text-xs font-black text-amber-300 mt-2";
+      } else if (correctCount >= 10) {
+        badgeElem.innerText = "🥈 护国英勇小卫士";
+        badgeElem.className = "text-xs font-black text-pink-300 mt-2";
+      } else {
+        badgeElem.innerText = "🥉 勤奋历史好学员";
+        badgeElem.className = "text-xs font-black text-purple-300 mt-2";
+      }
+
+      // Victory Confetti
+      playSound('victory');
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 100,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+      }
+
+      // Save Score
+      const entry = {
+        name: currentPlayer.name,
+        email: currentPlayer.email,
+        score: score,
+        correct: correctCount,
+        avatar: currentPlayer.avatar
+      };
+
+      if (window.saveLeaderboardScore) {
+        await window.saveLeaderboardScore(entry);
+      }
+
+      // Render Leaderboard
+      renderLeaderboard();
+    }
+
+    async function renderLeaderboard() {
+      const listContainer = document.getElementById('leaderboardList');
+      listContainer.innerHTML = `<div class="text-center py-4 text-xs text-purple-300/70"><i class="fa-solid fa-spinner fa-spin mr-1"></i>正在同步英雄榜数据...</div>`;
+
+      let scores = [];
+      if (window.fetchLeaderboard) {
+        scores = await window.fetchLeaderboard();
+      }
+
+      if (scores.length === 0) {
+        listContainer.innerHTML = `<div class="text-center py-4 text-xs text-purple-300/60">暂无排行记录，成为第一个登榜的学生吧！</div>`;
+        return;
+      }
+
+      let html = '';
+      scores.forEach((s, idx) => {
+        let rankBadge = `<span class="w-6 h-6 flex items-center justify-center font-black text-xs text-purple-300">${idx + 1}</span>`;
+        if (idx === 0) rankBadge = `<span class="w-6 h-6 flex items-center justify-center text-amber-300 font-bold text-base">🥇</span>`;
+        if (idx === 1) rankBadge = `<span class="w-6 h-6 flex items-center justify-center text-slate-300 font-bold text-base">🥈</span>`;
+        if (idx === 2) rankBadge = `<span class="w-6 h-6 flex items-center justify-center text-amber-500 font-bold text-base">🥉</span>`;
+
+        // Highlight current player
+        const isSelf = (s.email === currentPlayer.email);
+        const bgStyle = isSelf 
+          ? "bg-purple-500/30 border border-pink-400 shadow-md" 
+          : "bg-white/5 border border-white/10";
+
+        html += `
+          <div class="p-3 rounded-2xl ${bgStyle} flex items-center justify-between gap-3 text-xs transition">
+            <div class="flex items-center gap-3">
+              ${rankBadge}
+              <span class="text-xl">${s.avatar || '🗡️'}</span>
+              <div>
+                <div class="font-bold text-white">${s.name} ${isSelf ? '<span class="text-[10px] text-pink-400 font-normal">(我自己)</span>' : ''}</div>
+                <div class="text-[10px] text-purple-300/70 font-mono">${s.email}</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="font-black text-pink-300 text-sm">${s.score} 分</div>
+              <div class="text-[10px] text-emerald-400">${s.correct} / 15 对</div>
+            </div>
+          </div>
+        `;
+      });
+
+      listContainer.innerHTML = html;
+    }
+
+    function restartGame() {
+      playSound('click');
+      document.getElementById('endScreen').classList.add('hidden');
+      document.getElementById('loginScreen').classList.remove('hidden');
+    }
+
+    // TEACHER MODAL & EXCEL CSV EXPORT FUNCTIONS
+    function openTeacherModal() {
+      playSound('click');
+      document.getElementById('teacherModal').classList.remove('hidden');
+    }
+
+    function closeTeacherModal() {
+      playSound('click');
+      document.getElementById('teacherModal').classList.add('hidden');
+    }
+
+    function verifyTeacherPass() {
+      const pass = document.getElementById('teacherPassInput').value.trim();
+      const err = document.getElementById('teacherAuthError');
+      
+      if (pass === '2020Hui%%') {
+        err.classList.add('hidden');
+        document.getElementById('teacherAuthBox').classList.add('hidden');
+        document.getElementById('teacherDataContent').classList.remove('hidden');
+        loadTeacherTableData();
+      } else {
+        err.classList.remove('hidden');
+      }
+    }
+
+    async function loadTeacherTableData() {
+      const tbody = document.getElementById('teacherTableBody');
+      tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i>正在加载学生成绩记录...</td></tr>`;
+
+      let scores = window.cachedStudentScores || [];
+      if (!scores || scores.length === 0) {
+        if (window.fetchLeaderboard) {
+          scores = await window.fetchLeaderboard();
+        }
+      }
+
+      document.getElementById('totalStudentCount').innerText = scores.length;
+
+      if (scores.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400">暂无任何学生答题记录。</td></tr>`;
+        return;
+      }
+
+      let html = '';
+      scores.forEach((s, i) => {
+        const timeStr = s.timestamp ? new Date(s.timestamp).toLocaleString('zh-CN') : '近期提交';
+        html += `
+          <tr class="hover:bg-slate-50 transition">
+            <td class="p-3 font-bold text-slate-400">${i + 1}</td>
+            <td class="p-3 font-bold text-slate-800">${s.name || '未知'}</td>
+            <td class="p-3 font-mono text-indigo-600">${s.email || '-'}</td>
+            <td class="p-3 font-black text-pink-600">${s.score || 0}</td>
+            <td class="p-3 font-bold text-emerald-600">${s.correct !== undefined ? s.correct : '-'} / 15</td>
+            <td class="p-3 text-slate-400 text-[11px]">${timeStr}</td>
+          </tr>
+        `;
+      });
+
+      tbody.innerHTML = html;
+    }
+
+    function exportToCSV() {
+      playSound('click');
+      const data = window.cachedStudentScores || [];
+      if (data.length === 0) {
+        alert("目前没有可以导出的学生成绩数据！");
+        return;
+      }
+
+      // Add UTF-8 BOM to fix Excel Chinese character encoding
+      let csvContent = "\uFEFF";
+      csvContent += "序号,学生姓名,MOE邮箱(MOE-DL),最终得分,答对题数(满分15),代表英雄,提交时间\n";
+
+      data.forEach((item, index) => {
+        const timeStr = item.timestamp ? new Date(item.timestamp).toLocaleString('zh-CN') : '近期';
+        const cleanName = (item.name || '').replace(/"/g, '""');
+        const cleanEmail = (item.email || '').replace(/"/g, '""');
+        
+        csvContent += `"${index + 1}","${cleanName}","${cleanEmail}","${item.score || 0}","${item.correct !== undefined ? item.correct : 0}/15","${item.avatar || '🗡️'}","${timeStr}"\n`;
+      });
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      
+      const dateStr = new Date().toISOString().slice(0, 10);
+      link.setAttribute("download", `5年级历史单元5_学生练习成绩单_${dateStr}.csv`);
+      
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Attach globals to window for inline HTML handlers
+    window.selectAvatar = selectAvatar;
+    window.handleStartGame = handleStartGame;
+    window.nextQuestion = nextQuestion;
+    window.restartGame = restartGame;
+    window.toggleAudio = toggleAudio;
+    window.openTeacherModal = openTeacherModal;
+    window.closeTeacherModal = closeTeacherModal;
+    window.verifyTeacherPass = verifyTeacherPass;
+    window.exportToCSV = exportToCSV;
+  </script>
+</body>
+</html>
