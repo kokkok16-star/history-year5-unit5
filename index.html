@@ -90,8 +90,8 @@
             </div>
             <div class="flex gap-2">
                 <button onclick="toggleAudio()" id="audio-btn" class="bg-white/5 hover:bg-white/10 text-gray-300 px-3 py-2 rounded-xl text-xs font-semibold border border-white/10 flex items-center gap-1.5 transition">
-                    <i class="fa-solid fa-volume-high text-purple-400"></i>
-                    <span>音效: 开启</span>
+                    <i id="audio-icon" class="fa-solid fa-volume-high text-purple-400"></i>
+                    <span id="audio-status-text">音效: 开启</span>
                 </button>
                 <button onclick="openTeacherModal()" class="bg-purple-900/40 hover:bg-purple-800/50 text-purple-200 px-3 py-2 rounded-xl text-xs font-semibold border border-purple-500/30 flex items-center gap-1.5 transition">
                     <i class="fa-solid fa-lock text-yellow-400"></i>
@@ -294,7 +294,139 @@
 
     <!-- Script Application -->
     <script>
-        // Real Live Config Injected
+        // --- Web Audio Sound Engine ---
+        let audioCtx = null;
+        let audioOn = true;
+        let bgmTimer = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playSound(type) {
+            if (!audioOn) return;
+            try {
+                initAudio();
+                const now = audioCtx.currentTime;
+
+                if (type === 'click') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(600, now);
+                    osc.frequency.exponentialRampToValueAtTime(800, now + 0.05);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+                } 
+                else if (type === 'correct') {
+                    // High-pitched Victory Chime
+                    [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+                        gain.gain.setValueAtTime(0.15, now + idx * 0.08);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.3);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start(now + idx * 0.08);
+                        osc.stop(now + idx * 0.08 + 0.3);
+                    });
+                } 
+                else if (type === 'wrong') {
+                    // Low Buzz
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(180, now);
+                    osc.frequency.linearRampToValueAtTime(110, now + 0.25);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                }
+                else if (type === 'finish') {
+                    // Grand Fanfare
+                    const notes = [440, 554.37, 659.25, 880];
+                    notes.forEach((freq, i) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, now + i * 0.12);
+                        gain.gain.setValueAtTime(0.2, now + i * 0.12);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.12 + 0.6);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start(now + i * 0.12);
+                        osc.stop(now + i * 0.12 + 0.6);
+                    });
+                }
+            } catch (e) {
+                console.log("Audio play error:", e);
+            }
+        }
+
+        // Soft Background Music Loop Synthesizer
+        function startBGM() {
+            if (!audioOn || bgmTimer) return;
+            initAudio();
+            let noteIdx = 0;
+            const bgmNotes = [261.63, 329.63, 392.00, 523.25, 392.00, 329.63];
+            bgmTimer = setInterval(() => {
+                if (!audioOn) return;
+                try {
+                    const now = audioCtx.currentTime;
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(bgmNotes[noteIdx % bgmNotes.length], now);
+                    gain.gain.setValueAtTime(0.02, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.4);
+                    noteIdx++;
+                } catch(e){}
+            }, 600);
+        }
+
+        function stopBGM() {
+            if (bgmTimer) {
+                clearInterval(bgmTimer);
+                bgmTimer = null;
+            }
+        }
+
+        function toggleAudio() {
+            audioOn = !audioOn;
+            const statusText = document.getElementById('audio-status-text');
+            const icon = document.getElementById('audio-icon');
+
+            if (audioOn) {
+                statusText.innerText = '音效: 开启';
+                icon.className = "fa-solid fa-volume-high text-purple-400";
+                startBGM();
+                playSound('click');
+            } else {
+                statusText.innerText = '音效: 关闭';
+                icon.className = "fa-solid fa-volume-xmark text-gray-500";
+                stopBGM();
+            }
+        }
+
+        // --- Firebase Configuration ---
         const firebaseConfig = {
             apiKey: "AIzaSyB-Zwp4F-MrjFhOSiavVt7ycR9rEfJL9yk",
             authDomain: "sejarah-quiz-1e9d1.firebaseapp.com",
@@ -409,25 +541,24 @@
         let currentQuizIndex = 0;
         let score = 0;
         let studentInfo = { name: '', email: '', hero: '多赛益' };
-        let audioOn = true;
 
         function selectAvatar(name, el) {
+            playSound('click');
             document.querySelectorAll('.avatar-card').forEach(c => c.classList.remove('selected'));
             el.classList.add('selected');
             studentInfo.hero = name;
         }
 
-        function toggleAudio() {
-            audioOn = !audioOn;
-            document.getElementById('audio-btn').querySelector('span').innerText = `音效: ${audioOn ? '开启' : '关闭'}`;
-        }
-
         function startQuiz(e) {
             e.preventDefault();
+            playSound('click');
+            startBGM();
+
             const name = document.getElementById('student-name').value.trim();
             const email = document.getElementById('student-email').value.trim().toLowerCase();
 
             if (!email.endsWith('@moe-dl.edu.my')) {
+                playSound('wrong');
                 alert("请输入以 @moe-dl.edu.my 结尾的 MOE 官方邮箱！");
                 return;
             }
@@ -473,6 +604,7 @@
             const expText = document.getElementById('explanation-text');
 
             if (selectedIndex === data.answer) {
+                playSound('correct');
                 score += Math.round(100 / quizData.length);
                 options[selectedIndex].classList.add('bg-emerald-500/20', 'border-emerald-500', 'text-emerald-300');
                 options[selectedIndex].querySelector('i').className = "fa-solid fa-circle-check text-emerald-400";
@@ -480,6 +612,7 @@
                 expBox.className = "p-4 rounded-xl mb-6 bg-emerald-500/10 border border-emerald-500/30 text-emerald-300";
                 expTitle.innerHTML = `<i class="fa-solid fa-circle-check"></i> 回答正确！`;
             } else {
+                playSound('wrong');
                 options[selectedIndex].classList.add('bg-red-500/20', 'border-red-500', 'text-red-300');
                 options[selectedIndex].querySelector('i').className = "fa-solid fa-circle-xmark text-red-400";
 
@@ -496,6 +629,7 @@
         }
 
         function nextQuestion() {
+            playSound('click');
             currentQuizIndex++;
             if (currentQuizIndex < quizData.length) {
                 loadQuestion();
@@ -505,6 +639,9 @@
         }
 
         function finishQuiz() {
+            stopBGM();
+            playSound('finish');
+
             document.getElementById('quiz-card').classList.add('hidden');
             document.getElementById('result-card').classList.remove('hidden');
             document.getElementById('final-score').innerText = `${score} / 100`;
@@ -532,7 +669,7 @@
             }
         }
 
-        // Live Leaderboard for Students (Unlimited Entries)
+        // Live Leaderboard for Students
         function loadLiveLeaderboard() {
             const listEl = document.getElementById('leaderboard-list');
             const countEl = document.getElementById('leaderboard-count');
@@ -556,7 +693,6 @@
                     results.push(doc.data());
                 });
 
-                // Sort: Highest score first, then newest timestamp
                 results.sort((a, b) => {
                     if (b.score !== a.score) {
                         return b.score - a.score;
@@ -605,20 +741,25 @@
 
         // Teacher Area
         function openTeacherModal() {
+            playSound('click');
             document.getElementById('teacher-modal').classList.remove('hidden');
         }
         function closeTeacherModal() {
+            playSound('click');
             document.getElementById('teacher-modal').classList.add('hidden');
         }
 
         function authTeacher() {
+            playSound('click');
             const pwd = document.getElementById('teacher-password').value;
             if (pwd === '2020Hui%%') {
+                playSound('correct');
                 document.getElementById('teacher-auth-form').classList.add('hidden');
                 document.getElementById('teacher-dashboard').classList.remove('hidden');
                 document.getElementById('auth-error').classList.add('hidden');
                 fetchResults();
             } else {
+                playSound('wrong');
                 document.getElementById('auth-error').classList.remove('hidden');
             }
         }
@@ -654,6 +795,7 @@
         }
 
         function exportToCSV() {
+            playSound('click');
             if (!db) return;
             db.collection("quiz_results").get().then(snapshot => {
                 let csv = '学生姓名,代表英雄,MOE邮箱,得分,提交时间\n';
@@ -671,6 +813,7 @@
         }
 
         function clearAllDataConfirm() {
+            playSound('click');
             if (confirm("确定要清空云端数据库中所有学生的答题记录吗？")) {
                 if (db) {
                     db.collection("quiz_results").get().then(snapshot => {
