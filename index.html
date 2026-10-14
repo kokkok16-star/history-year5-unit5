@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5年级历史单元5：抗争的英雄 巩固练习</title>
+    <title>5年级历史 单元5：地方领袖的起义与抗争 巩固练习</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -18,181 +18,255 @@
         
         body {
             font-family: 'Noto Sans SC', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: #0f0c20;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(112, 58, 227, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(220, 38, 127, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(15, 12, 32, 1) 0%, #080612 100%);
+            background-attachment: fixed;
+            color: #f1f5f9;
             min-height: 100vh;
         }
-        .font-fun {
-            font-family: 'Fredoka', 'Noto Sans SC', sans-serif;
+
+        .dark-glass {
+            background: rgba(26, 22, 53, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+        .gradient-btn {
+            background: linear-gradient(135deg, #7c3aed 0%, #d946ef 100%);
+            transition: all 0.25s ease;
         }
+        .gradient-btn:hover {
+            opacity: 0.92;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(217, 70, 239, 0.4);
+        }
+
+        .avatar-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+        }
+        .avatar-card.selected {
+            border-color: #d946ef;
+            background: rgba(217, 70, 239, 0.15);
+            box-shadow: 0 0 15px rgba(217, 70, 239, 0.3);
+        }
+
         .option-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.2s ease;
         }
         .option-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #a855f7;
+        }
+
+        input::placeholder {
+            color: #64748b;
         }
     </style>
 </head>
-<body class="py-6 px-4 md:px-8">
+<body class="py-6 px-4 md:px-8 flex flex-col justify-between min-h-screen">
 
-    <!-- Header / Navbar -->
-    <header class="max-w-4xl mx-auto mb-6 flex justify-between items-center bg-white p-4 rounded-2xl shadow-md">
-        <div class="flex items-center space-x-3">
-            <div class="bg-indigo-600 text-white p-3 rounded-xl font-bold text-xl">
-                <i class="fa-solid fa-book-open"></i>
-            </div>
-            <div>
-                <h1 class="text-xl md:text-2xl font-bold text-gray-800">5年级历史 单元5</h1>
-                <p class="text-xs md:text-sm text-gray-500">地方领袖抵抗英国殖民统治的斗争</p>
-            </div>
-        </div>
-        <button onclick="openTeacherModal()" class="bg-gray-100 hover:bg-indigo-50 text-indigo-700 px-4 py-2 rounded-xl text-sm font-semibold transition flex items-center gap-2 border border-indigo-100">
-            <i class="fa-solid fa-user-shield"></i>
-            <span>教师专区</span>
-        </button>
-    </header>
-
-    <!-- Main Container -->
-    <main class="max-w-4xl mx-auto">
-        <!-- Step 1: Student Login Form -->
-        <div id="login-card" class="glass-card rounded-3xl p-6 md:p-10 mb-8 max-w-lg mx-auto">
-            <div class="text-center mb-6">
-                <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">学生登录</span>
-                <h2 class="text-2xl font-bold text-gray-800 mt-2 font-fun">开始巩固练习</h2>
-                <p class="text-gray-500 text-sm mt-1">请填写你的真实姓名与 MOE 邮箱账号</p>
-            </div>
-
-            <form id="student-form" onsubmit="startQuiz(event)" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">学生姓名 (Nama)</label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400"><i class="fa-solid fa-user"></i></span>
-                        <input type="text" id="student-name" required placeholder="例如：李小明 / Ali Bin Ahmad" class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none">
-                    </div>
+    <div>
+        <!-- Navbar -->
+        <header class="max-w-4xl mx-auto mb-8 flex justify-between items-center bg-black/30 p-4 rounded-2xl border border-white/10 backdrop-blur-md">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-tr from-purple-600 to-pink-500 text-white p-3 rounded-xl font-bold text-xl shadow-lg">
+                    <i class="fa-solid fa-bolt"></i>
                 </div>
-
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">MOE 谷歌邮箱 (Email moe-dl)</label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400"><i class="fa-solid fa-envelope"></i></span>
-                        <input type="email" id="student-email" required placeholder="g-xxxxxxxx@moe-dl.edu.my" class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none">
+                    <div class="flex items-center gap-2">
+                        <span class="bg-purple-900/60 text-purple-300 text-[10px] font-bold px-2 py-0.5 rounded border border-purple-500/30">YEAR 5 HISTORY</span>
+                        <span class="text-xs text-gray-400">KSSR Semakan</span>
                     </div>
-                    <p id="email-error" class="text-red-500 text-xs mt-1 hidden"><i class="fa-solid fa-circle-exclamation"></i> 请使用官方 @moe-dl.edu.my 邮箱账号登录</p>
+                    <h1 class="text-lg md:text-xl font-bold text-white mt-0.5">单元 5：地方领袖的起义与抗争</h1>
                 </div>
-
-                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-indigo-200 transition font-fun text-lg flex items-center justify-center gap-2">
-                    <span>开始答题</span>
-                    <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="toggleAudio()" id="audio-btn" class="bg-white/5 hover:bg-white/10 text-gray-300 px-3 py-2 rounded-xl text-xs font-semibold border border-white/10 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-volume-high text-purple-400"></i>
+                    <span>音效: 开启</span>
                 </button>
-            </form>
-        </div>
+                <button onclick="openTeacherModal()" class="bg-purple-900/40 hover:bg-purple-800/50 text-purple-200 px-3 py-2 rounded-xl text-xs font-semibold border border-purple-500/30 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-file-excel text-emerald-400"></i>
+                    <span>教师专区 / 导出数据</span>
+                </button>
+            </div>
+        </header>
 
-        <!-- Step 2: Quiz Area -->
-        <div id="quiz-card" class="glass-card rounded-3xl p-6 md:p-8 mb-8 hidden">
-            <!-- Progress & Header -->
-            <div class="flex justify-between items-center pb-4 mb-6 border-b border-gray-100">
-                <div>
-                    <span id="question-number" class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">第 1 / 15 题</span>
-                    <h3 id="student-display-name" class="text-sm font-medium text-gray-500 mt-1"></h3>
+        <!-- Main Area -->
+        <main class="max-w-4xl mx-auto">
+            <!-- STEP 1: Student Login -->
+            <div id="login-card" class="dark-glass rounded-3xl p-6 md:p-10 max-w-xl mx-auto text-center border border-white/10">
+                <span class="bg-purple-500/20 text-purple-300 text-xs font-bold px-3 py-1 rounded-full border border-purple-500/30 inline-block mb-3">
+                    <i class="fa-solid fa-trophy mr-1"></i> 15 题全答式 · 历史挑战赛
+                </span>
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-2 tracking-wide">开启你的历史挑战之旅！</h2>
+                <p class="text-gray-400 text-xs md:text-sm mb-6">答对积累积分，答错也能看详细解析！<br>完整回答所有 15 题，争夺英雄榜高分荣誉！</p>
+
+                <!-- Hero Avatar Selector -->
+                <div class="mb-6 text-left">
+                    <label class="block text-xs font-semibold text-purple-300 mb-2.5 flex items-center gap-1.5">
+                        <i class="fa-solid fa-user-ninja"></i> 选择你的代表英雄形象:
+                    </label>
+                    <div class="grid grid-cols-5 gap-2" id="avatar-container">
+                        <div onclick="selectAvatar('多赛益', this)" class="avatar-card selected p-2.5 rounded-xl cursor-pointer text-center">
+                            <div class="text-2xl mb-1">⚔️</div>
+                            <div class="text-[11px] font-bold text-gray-200">多赛益</div>
+                        </div>
+                        <div onclick="selectAvatar('仁答', this)" class="avatar-card p-2.5 rounded-xl cursor-pointer text-center">
+                            <div class="text-2xl mb-1">🛡️</div>
+                            <div class="text-[11px] font-bold text-gray-200">仁答</div>
+                        </div>
+                        <div onclick="selectAvatar('末沙里', this)" class="avatar-card p-2.5 rounded-xl cursor-pointer text-center">
+                            <div class="text-2xl mb-1">🏹</div>
+                            <div class="text-[11px] font-bold text-gray-200">末沙里</div>
+                        </div>
+                        <div onclick="selectAvatar('督查曼', this)" class="avatar-card p-2.5 rounded-xl cursor-pointer text-center">
+                            <div class="text-2xl mb-1">⚔️</div>
+                            <div class="text-[11px] font-bold text-gray-200">督查曼</div>
+                        </div>
+                        <div onclick="selectAvatar('林梦', this)" class="avatar-card p-2.5 rounded-xl cursor-pointer text-center">
+                            <div class="text-2xl mb-1">📜</div>
+                            <div class="text-[11px] font-bold text-gray-200">林梦</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="text-right">
-                    <span id="score-live" class="text-lg font-bold text-emerald-600 font-fun">得分: 0</span>
+
+                <!-- Form Inputs -->
+                <form onsubmit="startQuiz(event)" class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-xs font-semibold text-purple-300 mb-1 flex items-center gap-1.5">
+                            <i class="fa-solid fa-id-card"></i> 学生姓名 (中文 / 英文):
+                        </label>
+                        <input type="text" id="student-name" required placeholder="例如: 李小明 / Tan Ah Kow" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-purple-500 transition">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-purple-300 mb-1 flex items-center gap-1.5">
+                            <i class="fa-solid fa-envelope"></i> MOE 学生邮箱 (MOE-DL Email):
+                        </label>
+                        <input type="email" id="student-email" required placeholder="例如: m-12345678@moe-dl.edu.my" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-purple-500 transition">
+                        <p class="text-[11px] text-purple-400/80 mt-1 flex items-center gap-1">
+                            <i class="fa-solid fa-circle-info"></i> 必须以 <b>@moe-dl.edu.my</b> 结尾方可记录成绩。
+                        </p>
+                    </div>
+
+                    <button type="submit" class="w-full gradient-btn text-white font-bold py-3.5 rounded-xl text-sm md:text-base mt-2 flex items-center justify-center gap-2 shadow-lg">
+                        <span>开始 15 题练习挑战</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- STEP 2: Quiz Area -->
+            <div id="quiz-card" class="dark-glass rounded-3xl p-6 md:p-8 hidden border border-white/10">
+                <div class="flex justify-between items-center pb-4 mb-6 border-b border-white/10">
+                    <div>
+                        <span id="question-number" class="text-xs font-bold text-purple-300 bg-purple-900/50 border border-purple-500/30 px-3 py-1 rounded-full">第 1 / 15 题</span>
+                        <h3 id="student-display-name" class="text-xs text-gray-400 mt-2"></h3>
+                    </div>
+                    <div class="text-right">
+                        <span id="score-live" class="text-xl font-bold text-emerald-400 font-mono">得分: 0</span>
+                    </div>
                 </div>
+
+                <div class="mb-6">
+                    <h2 id="question-text" class="text-base md:text-lg font-bold text-white leading-relaxed mb-4"></h2>
+                    <div id="options-container" class="space-y-3"></div>
+                </div>
+
+                <div id="explanation-box" class="p-4 rounded-xl mb-6 hidden border">
+                    <div class="font-bold text-sm mb-1 flex items-center gap-2" id="explanation-title"></div>
+                    <p id="explanation-text" class="text-xs md:text-sm leading-relaxed text-gray-200"></p>
+                </div>
+
+                <button id="next-btn" onclick="nextQuestion()" class="w-full gradient-btn text-white font-bold py-3.5 rounded-xl transition text-base hidden">
+                    下一题 <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
             </div>
 
-            <!-- Question Box -->
-            <div class="mb-6">
-                <h2 id="question-text" class="text-lg md:text-xl font-bold text-gray-800 leading-relaxed mb-4"></h2>
-                <div id="options-container" class="space-y-3"></div>
+            <!-- STEP 3: Result Area -->
+            <div id="result-card" class="dark-glass rounded-3xl p-8 text-center hidden border border-white/10">
+                <div class="w-20 h-20 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-1">练习挑战完成！</h2>
+                <p class="text-gray-400 text-xs md:text-sm mb-6">成绩已保存，并已实时发送至云端数据库！</p>
+
+                <div class="bg-black/40 p-6 rounded-2xl max-w-xs mx-auto mb-6 border border-white/10">
+                    <div class="text-xs text-purple-300 font-bold uppercase tracking-wider mb-1">最终得分</div>
+                    <div id="final-score" class="text-4xl font-bold text-emerald-400 font-mono">0 / 100</div>
+                </div>
+
+                <button onclick="location.reload()" class="gradient-btn text-white px-8 py-3 rounded-xl font-bold transition text-sm">
+                    再次挑战
+                </button>
             </div>
+        </main>
+    </div>
 
-            <!-- Explanation Box -->
-            <div id="explanation-box" class="p-4 rounded-xl mb-6 hidden">
-                <div class="font-bold mb-1 flex items-center gap-2" id="explanation-title"></div>
-                <p id="explanation-text" class="text-sm text-gray-700 leading-relaxed"></p>
-            </div>
+    <!-- Footer -->
+    <footer class="max-w-4xl mx-auto w-full pt-8 pb-4 flex justify-between items-center text-[11px] text-gray-500 border-t border-white/5 mt-8">
+        <div>5年级历史 单元5: 地方领袖的起义与抗争 巩固练习 | KSSR Semakan 课程标准</div>
+        <button onclick="openTeacherModal()" class="hover:text-purple-400 transition"><i class="fa-solid fa-user-shield mr-1"></i>教师专区</button>
+    </footer>
 
-            <!-- Action Button -->
-            <button id="next-btn" onclick="nextQuestion()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl transition font-fun text-lg hidden">
-                下一题 <i class="fa-solid fa-arrow-right ml-1"></i>
-            </button>
-        </div>
-
-        <!-- Step 3: Result Summary -->
-        <div id="result-card" class="glass-card rounded-3xl p-8 mb-8 text-center hidden">
-            <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
-                <i class="fa-solid fa-trophy"></i>
-            </div>
-            <h2 class="text-3xl font-bold text-gray-800 font-fun mb-1">练习完成！</h2>
-            <p class="text-gray-500 text-sm mb-6">答题成绩已成功实时提交至教师端数据库。</p>
-
-            <div class="bg-gray-50 p-6 rounded-2xl max-w-sm mx-auto mb-6">
-                <div class="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">最终得分</div>
-                <div id="final-score" class="text-5xl font-bold text-indigo-600 font-fun">0 / 100</div>
-            </div>
-
-            <button onclick="location.reload()" class="bg-gray-800 hover:bg-gray-900 text-white px-8 py-3 rounded-xl font-bold transition">
-                重新挑战
-            </button>
-        </div>
-    </main>
-
-    <!-- Modal: Teacher Login / Dashboard -->
-    <div id="teacher-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl max-h-[90vh] flex flex-col">
-            <div class="flex justify-between items-center pb-4 border-b border-gray-100">
-                <h3 class="text-xl font-bold text-gray-800 flex items-center gap-2">
-                    <i class="fa-solid fa-user-shield text-indigo-600"></i>
+    <!-- Modal: Teacher Area -->
+    <div id="teacher-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="dark-glass rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-white/10 max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center pb-4 border-b border-white/10">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-user-shield text-purple-400"></i>
                     教师后台管理面板
                 </h3>
-                <button onclick="closeTeacherModal()" class="text-gray-400 hover:text-gray-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeTeacherModal()" class="text-gray-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
-            <!-- Password Form -->
+            <!-- Password Entry (Password text removed) -->
             <div id="teacher-auth-form" class="py-8">
-                <p class="text-sm text-gray-500 mb-4 text-center">请输入教师专区密码（默认密码：2020Hui%%）</p>
+                <p class="text-xs md:text-sm text-gray-300 mb-4 text-center">请输入教师专区授权密码以查看云端成绩单：</p>
                 <div class="max-w-xs mx-auto space-y-3">
-                    <input type="password" id="teacher-password" placeholder="请输入密码" class="w-full px-4 py-2.5 border rounded-xl text-center outline-none focus:ring-2 focus:ring-indigo-500">
-                    <button onclick="authTeacher()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-xl transition">登录验证</button>
-                    <p id="auth-error" class="text-red-500 text-xs text-center hidden">密码错误！</p>
+                    <input type="password" id="teacher-password" placeholder="请输入密码" class="w-full bg-black/50 border border-white/20 rounded-xl px-4 py-3 text-sm text-center text-white outline-none focus:border-purple-500">
+                    <button onclick="authTeacher()" class="w-full gradient-btn text-white font-bold py-3 rounded-xl text-sm transition">登录验证</button>
+                    <p id="auth-error" class="text-red-400 text-xs text-center hidden"><i class="fa-solid fa-circle-exclamation"></i> 密码错误！</p>
                 </div>
             </div>
 
-            <!-- Dashboard Content -->
-            <div id="teacher-dashboard" class="py-4 flex-1 overflow-y-auto hidden">
-                <div class="flex justify-between items-center mb-4">
-                    <div>
-                        <span id="cloud-status" class="text-xs px-2.5 py-1 rounded-full font-semibold bg-emerald-100 text-emerald-700">🟢 云端数据库已实时连接</span>
-                    </div>
+            <!-- Dashboard -->
+            <div id="teacher-dashboard" class="py-4 flex-1 overflow-y-auto hidden space-y-4">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs px-2.5 py-1 rounded-full font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                        🟢 实时云端数据库已就绪
+                    </span>
                     <div class="flex gap-2">
-                        <button onclick="exportToCSV()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs px-3 py-2 rounded-lg font-bold transition flex items-center gap-1">
+                        <button onclick="exportToCSV()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-2 rounded-lg font-bold transition flex items-center gap-1">
                             <i class="fa-solid fa-file-excel"></i> 导出 CSV 成绩单
                         </button>
-                        <button onclick="clearAllDataConfirm()" class="bg-red-50 hover:bg-red-100 text-red-600 text-xs px-3 py-2 rounded-lg font-bold transition">
+                        <button onclick="clearAllDataConfirm()" class="bg-red-500/20 hover:bg-red-500/30 text-red-300 border border-red-500/30 text-xs px-3 py-2 rounded-lg font-bold transition">
                             清空记录
                         </button>
                     </div>
                 </div>
 
-                <!-- Table -->
-                <div class="border rounded-2xl overflow-hidden shadow-sm">
-                    <table class="w-full text-left text-sm">
-                        <thead class="bg-gray-50 text-gray-600 border-b">
+                <div class="border border-white/10 rounded-2xl overflow-hidden bg-black/30">
+                    <table class="w-full text-left text-xs text-gray-300">
+                        <thead class="bg-white/5 text-purple-200 border-b border-white/10">
                             <tr>
                                 <th class="p-3">学生姓名</th>
                                 <th class="p-3">MOE 邮箱</th>
-                                <th class="p-3">分数</th>
+                                <th class="p-3">得分</th>
                                 <th class="p-3">提交时间</th>
                             </tr>
                         </thead>
-                        <tbody id="student-table-body" class="divide-y text-gray-700">
-                            <tr><td colspan="4" class="p-4 text-center text-gray-400">正在同步云端记录...</td></tr>
+                        <tbody id="student-table-body" class="divide-y divide-white/5">
+                            <tr><td colspan="4" class="p-4 text-center text-gray-500">同步云端记录中...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -200,9 +274,9 @@
         </div>
     </div>
 
-    <!-- Application Script -->
+    <!-- Script Application -->
     <script>
-        // 1. Firebase Live Configuration (Injected from teacher setup)
+        // Real Live Config Injected
         const firebaseConfig = {
             apiKey: "AIzaSyB-Zwp4F-MrjFhOSiavVt7ycR9rEfJL9yk",
             authDomain: "sejarah-quiz-1e9d1.firebaseapp.com",
@@ -213,17 +287,14 @@
             measurementId: "G-X4EZNSFC07"
         };
 
-        // Initialize Firebase
         let db = null;
         try {
             firebase.initializeApp(firebaseConfig);
             db = firebase.firestore();
-            console.log("Firebase Database connected successfully!");
         } catch(e) {
-            console.warn("Firebase initialized fallback or offline:", e);
+            console.warn("Firebase Init fallback:", e);
         }
 
-        // 15 KSSR Year 5 Unit 5 History Questions
         const quizData = [
             {
                 q: "英国殖民者在马来半岛委派了哪种官员来干涉地方行政和征税事务？",
@@ -317,35 +388,38 @@
             }
         ];
 
-        // State Variables
         let currentQuizIndex = 0;
         let score = 0;
-        let studentInfo = { name: '', email: '' };
+        let studentInfo = { name: '', email: '', hero: '多赛益' };
+        let audioOn = true;
 
-        // DOM elements
-        const loginCard = document.getElementById('login-card');
-        const quizCard = document.getElementById('quiz-card');
-        const resultCard = document.getElementById('result-card');
-        const teacherModal = document.getElementById('teacher-modal');
+        function selectAvatar(name, el) {
+            document.querySelectorAll('.avatar-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            studentInfo.hero = name;
+        }
 
-        // Form Submit
+        function toggleAudio() {
+            audioOn = !audioOn;
+            document.getElementById('audio-btn').querySelector('span').innerText = `音效: ${audioOn ? '开启' : '关闭'}`;
+        }
+
         function startQuiz(e) {
             e.preventDefault();
             const name = document.getElementById('student-name').value.trim();
             const email = document.getElementById('student-email').value.trim().toLowerCase();
-            const emailError = document.getElementById('email-error');
 
             if (!email.endsWith('@moe-dl.edu.my')) {
-                emailError.classList.remove('hidden');
+                alert("请输入以 @moe-dl.edu.my 结尾的 MOE 官方邮箱！");
                 return;
             }
-            emailError.classList.add('hidden');
 
-            studentInfo = { name, email };
-            document.getElementById('student-display-name').innerText = `学生: ${name} (${email})`;
+            studentInfo.name = name;
+            studentInfo.email = email;
+            document.getElementById('student-display-name').innerText = `代表英雄: ${studentInfo.hero} | 学生: ${name} (${email})`;
 
-            loginCard.classList.add('hidden');
-            quizCard.classList.remove('hidden');
+            document.getElementById('login-card').classList.add('hidden');
+            document.getElementById('quiz-card').classList.remove('hidden');
 
             currentQuizIndex = 0;
             score = 0;
@@ -359,23 +433,22 @@
             document.getElementById('explanation-box').classList.add('hidden');
             document.getElementById('next-btn').classList.add('hidden');
 
-            const optionsContainer = document.getElementById('options-container');
-            optionsContainer.innerHTML = '';
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
 
             data.options.forEach((opt, idx) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn w-full text-left p-4 rounded-xl border border-gray-200 bg-white hover:border-indigo-500 font-medium text-gray-700 transition flex items-center justify-between";
-                btn.innerHTML = `<span>${String.fromCharCode(65 + idx)}. ${opt}</span> <i class="fa-regular fa-circle text-gray-300"></i>`;
+                btn.className = "option-btn w-full text-left p-4 rounded-xl font-medium text-sm text-gray-200 flex items-center justify-between";
+                btn.innerHTML = `<span>${String.fromCharCode(65 + idx)}. ${opt}</span> <i class="fa-regular fa-circle text-gray-500"></i>`;
                 btn.onclick = () => checkAnswer(idx);
-                optionsContainer.appendChild(btn);
+                container.appendChild(btn);
             });
         }
 
         function checkAnswer(selectedIndex) {
             const data = quizData[currentQuizIndex];
             const options = document.querySelectorAll('.option-btn');
-            
-            options.forEach(btn => btn.disabled = true);
+            options.forEach(b => b.disabled = true);
 
             const expBox = document.getElementById('explanation-box');
             const expTitle = document.getElementById('explanation-title');
@@ -383,18 +456,18 @@
 
             if (selectedIndex === data.answer) {
                 score += Math.round(100 / quizData.length);
-                options[selectedIndex].classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-700');
-                options[selectedIndex].querySelector('i').className = "fa-solid fa-circle-check text-emerald-500";
-                
-                expBox.className = "p-4 rounded-xl mb-6 bg-emerald-50 border border-emerald-200 text-emerald-800";
+                options[selectedIndex].classList.add('bg-emerald-500/20', 'border-emerald-500', 'text-emerald-300');
+                options[selectedIndex].querySelector('i').className = "fa-solid fa-circle-check text-emerald-400";
+
+                expBox.className = "p-4 rounded-xl mb-6 bg-emerald-500/10 border border-emerald-500/30 text-emerald-300";
                 expTitle.innerHTML = `<i class="fa-solid fa-circle-check"></i> 回答正确！`;
             } else {
-                options[selectedIndex].classList.add('bg-red-50', 'border-red-500', 'text-red-700');
-                options[selectedIndex].querySelector('i').className = "fa-solid fa-circle-xmark text-red-500";
+                options[selectedIndex].classList.add('bg-red-500/20', 'border-red-500', 'text-red-300');
+                options[selectedIndex].querySelector('i').className = "fa-solid fa-circle-xmark text-red-400";
 
-                options[data.answer].classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-700');
-                
-                expBox.className = "p-4 rounded-xl mb-6 bg-red-50 border border-red-200 text-red-800";
+                options[data.answer].classList.add('bg-emerald-500/20', 'border-emerald-500', 'text-emerald-300');
+
+                expBox.className = "p-4 rounded-xl mb-6 bg-red-500/10 border border-red-500/30 text-red-300";
                 expTitle.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> 回答错误`;
             }
 
@@ -414,36 +487,30 @@
         }
 
         function finishQuiz() {
-            quizCard.classList.add('hidden');
-            resultCard.classList.remove('hidden');
+            document.getElementById('quiz-card').classList.add('hidden');
+            document.getElementById('result-card').classList.remove('hidden');
             document.getElementById('final-score').innerText = `${score} / 100`;
 
             const payload = {
                 name: studentInfo.name,
                 email: studentInfo.email,
+                hero: studentInfo.hero,
                 score: score,
                 timestamp: new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Kuala_Lumpur' })
             };
 
-            // Save to Firestore Cloud
             if (db) {
                 db.collection("quiz_results").add(payload)
-                .then(() => console.log("Saved to cloud!"))
-                .catch(err => console.error("Error saving cloud:", err));
+                .then(() => console.log("Cloud Saved!"))
+                .catch(e => console.error("Cloud error:", e));
             }
-
-            // Local fallback
-            let localData = JSON.parse(localStorage.getItem('history_quiz_results') || '[]');
-            localData.push(payload);
-            localStorage.setItem('history_quiz_results', JSON.stringify(localData));
         }
 
-        // Teacher Area Modal
         function openTeacherModal() {
-            teacherModal.classList.remove('hidden');
+            document.getElementById('teacher-modal').classList.remove('hidden');
         }
         function closeTeacherModal() {
-            teacherModal.classList.add('hidden');
+            document.getElementById('teacher-modal').classList.add('hidden');
         }
 
         function authTeacher() {
@@ -460,31 +527,30 @@
 
         function fetchResults() {
             const tbody = document.getElementById('student-table-body');
-            tbody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-gray-400">数据加载中...</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-gray-500">数据加载中...</td></tr>';
 
             if (db) {
                 db.collection("quiz_results").orderBy("timestamp", "desc").get()
                 .then((querySnapshot) => {
                     if (querySnapshot.empty) {
-                        tbody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-gray-400">暂无学生提交成绩</td></tr>';
+                        tbody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-gray-500">暂无学生提交记录</td></tr>';
                         return;
                     }
                     tbody.innerHTML = '';
                     querySnapshot.forEach((doc) => {
                         const data = doc.data();
                         tbody.innerHTML += `
-                            <tr class="hover:bg-gray-50 border-b">
-                                <td class="p-3 font-semibold text-gray-800">${data.name}</td>
-                                <td class="p-3 text-gray-500">${data.email}</td>
-                                <td class="p-3 font-bold text-indigo-600">${data.score} 分</td>
-                                <td class="p-3 text-xs text-gray-400">${data.timestamp}</td>
+                            <tr class="hover:bg-white/5 border-b border-white/5">
+                                <td class="p-3 font-semibold text-white">${data.name} <span class="text-[10px] text-purple-400">(${data.hero || '无'})</span></td>
+                                <td class="p-3 text-gray-400">${data.email}</td>
+                                <td class="p-3 font-bold text-emerald-400">${data.score} 分</td>
+                                <td class="p-3 text-[10px] text-gray-500">${data.timestamp}</td>
                             </tr>
                         `;
                     });
                 })
                 .catch((err) => {
-                    console.error("Fetch error:", err);
-                    tbody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-red-500">连接云端失败，已切换至本地视图</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-red-400">无法连接云端，请重试</td></tr>';
                 });
             }
         }
@@ -492,26 +558,26 @@
         function exportToCSV() {
             if (!db) return;
             db.collection("quiz_results").get().then(snapshot => {
-                let csv = '学生姓名,MOE 邮箱,得分,提交时间\n';
+                let csv = '学生姓名,代表英雄,MOE邮箱,得分,提交时间\n';
                 snapshot.forEach(doc => {
                     const d = doc.data();
-                    csv += `"${d.name}","${d.email}","${d.score}","${d.timestamp}"\n`;
+                    csv += `"${d.name}","${d.hero || ''}","${d.email}","${d.score}","${d.timestamp}"\n`;
                 });
                 const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `5年级历史练习成绩汇总_${new Date().toISOString().slice(0,10)}.csv`;
+                a.download = `5年级历史成绩单_${new Date().toISOString().slice(0,10)}.csv`;
                 a.click();
             });
         }
 
         function clearAllDataConfirm() {
-            if (confirm("确定要清空数据库中所有学生的答题记录吗？此操作无法撤销！")) {
+            if (confirm("确定要清空云端数据库中所有学生的答题记录吗？")) {
                 if (db) {
                     db.collection("quiz_results").get().then(snapshot => {
                         snapshot.forEach(doc => doc.ref.delete());
-                        alert("数据库已清空！");
+                        alert("记录已全部清空！");
                         fetchResults();
                     });
                 }
