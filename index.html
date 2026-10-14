@@ -94,8 +94,8 @@
                     <span>音效: 开启</span>
                 </button>
                 <button onclick="openTeacherModal()" class="bg-purple-900/40 hover:bg-purple-800/50 text-purple-200 px-3 py-2 rounded-xl text-xs font-semibold border border-purple-500/30 flex items-center gap-1.5 transition">
-                    <i class="fa-solid fa-file-excel text-emerald-400"></i>
-                    <span>教师专区 / 导出数据</span>
+                    <i class="fa-solid fa-lock text-yellow-400"></i>
+                    <span>🔒 教师后台</span>
                 </button>
             </div>
         </header>
@@ -192,22 +192,40 @@
                 </button>
             </div>
 
-            <!-- STEP 3: Result Area -->
-            <div id="result-card" class="dark-glass rounded-3xl p-8 text-center hidden border border-white/10">
-                <div class="w-20 h-20 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+            <!-- STEP 3: Result Area & Live Leaderboard -->
+            <div id="result-card" class="dark-glass rounded-3xl p-6 md:p-8 text-center hidden border border-white/10">
+                <div class="w-16 h-16 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
                     <i class="fa-solid fa-trophy"></i>
                 </div>
-                <h2 class="text-2xl md:text-3xl font-bold text-white mb-1">练习挑战完成！</h2>
-                <p class="text-gray-400 text-xs md:text-sm mb-6">成绩已保存，并已实时发送至云端数据库！</p>
+                <h2 class="text-2xl font-bold text-white mb-1">练习挑战完成！</h2>
+                <p class="text-gray-400 text-xs mb-4">成绩已成功同步提交至云端！</p>
 
-                <div class="bg-black/40 p-6 rounded-2xl max-w-xs mx-auto mb-6 border border-white/10">
-                    <div class="text-xs text-purple-300 font-bold uppercase tracking-wider mb-1">最终得分</div>
-                    <div id="final-score" class="text-4xl font-bold text-emerald-400 font-mono">0 / 100</div>
+                <div class="bg-black/40 p-4 rounded-2xl max-w-xs mx-auto mb-6 border border-white/10">
+                    <div class="text-[11px] text-purple-300 font-bold uppercase tracking-wider mb-0.5">你的最终得分</div>
+                    <div id="final-score" class="text-3xl font-bold text-emerald-400 font-mono">0 / 100</div>
                 </div>
 
-                <button onclick="location.reload()" class="gradient-btn text-white px-8 py-3 rounded-xl font-bold transition text-sm">
-                    再次挑战
-                </button>
+                <!-- Leaderboard Section for Students -->
+                <div class="mt-6 text-left border-t border-white/10 pt-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-base font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-ranking-star text-yellow-400"></i> 英雄排行榜 (实时全员无上限)
+                        </h3>
+                        <span class="text-[11px] text-gray-400" id="leaderboard-count">加载中...</span>
+                    </div>
+
+                    <div class="max-h-64 overflow-y-auto border border-white/10 rounded-2xl bg-black/40 p-2">
+                        <div id="leaderboard-list" class="space-y-1.5 text-xs">
+                            <div class="text-center py-4 text-gray-500">正在获取最新排名...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex gap-3 justify-center">
+                    <button onclick="location.reload()" class="gradient-btn text-white px-8 py-3 rounded-xl font-bold transition text-sm">
+                        再次挑战
+                    </button>
+                </div>
             </div>
         </main>
     </div>
@@ -215,7 +233,7 @@
     <!-- Footer -->
     <footer class="max-w-4xl mx-auto w-full pt-8 pb-4 flex justify-between items-center text-[11px] text-gray-500 border-t border-white/5 mt-8">
         <div>5年级历史 单元5: 地方领袖的起义与抗争 巩固练习 | KSSR Semakan 课程标准</div>
-        <button onclick="openTeacherModal()" class="hover:text-purple-400 transition"><i class="fa-solid fa-user-shield mr-1"></i>教师专区</button>
+        <button onclick="openTeacherModal()" class="hover:text-purple-400 transition"><i class="fa-solid fa-lock text-yellow-400 mr-1"></i>🔒 教师后台</button>
     </footer>
 
     <!-- Modal: Teacher Area -->
@@ -224,14 +242,14 @@
             <div class="flex justify-between items-center pb-4 border-b border-white/10">
                 <h3 class="text-lg font-bold text-white flex items-center gap-2">
                     <i class="fa-solid fa-user-shield text-purple-400"></i>
-                    教师后台管理面板
+                    教师后台管理面板 (Unit 5)
                 </h3>
                 <button onclick="closeTeacherModal()" class="text-gray-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
-            <!-- Password Entry (Password text removed) -->
+            <!-- Password Entry -->
             <div id="teacher-auth-form" class="py-8">
-                <p class="text-xs md:text-sm text-gray-300 mb-4 text-center">请输入教师专区授权密码以查看云端成绩单：</p>
+                <p class="text-xs md:text-sm text-gray-300 mb-4 text-center">请输入授权密码查看成绩汇总：</p>
                 <div class="max-w-xs mx-auto space-y-3">
                     <input type="password" id="teacher-password" placeholder="请输入密码" class="w-full bg-black/50 border border-white/20 rounded-xl px-4 py-3 text-sm text-center text-white outline-none focus:border-purple-500">
                     <button onclick="authTeacher()" class="w-full gradient-btn text-white font-bold py-3 rounded-xl text-sm transition">登录验证</button>
@@ -501,11 +519,91 @@
 
             if (db) {
                 db.collection("quiz_results").add(payload)
-                .then(() => console.log("Cloud Saved!"))
-                .catch(e => console.error("Cloud error:", e));
+                .then(() => {
+                    console.log("Cloud Saved!");
+                    loadLiveLeaderboard();
+                })
+                .catch(e => {
+                    console.error("Cloud error:", e);
+                    loadLiveLeaderboard();
+                });
+            } else {
+                loadLiveLeaderboard();
             }
         }
 
+        // Live Leaderboard for Students (Unlimited Entries)
+        function loadLiveLeaderboard() {
+            const listEl = document.getElementById('leaderboard-list');
+            const countEl = document.getElementById('leaderboard-count');
+            listEl.innerHTML = '<div class="text-center py-4 text-gray-500">正在获取排行榜...</div>';
+
+            if (!db) {
+                listEl.innerHTML = '<div class="text-center py-4 text-gray-500">无法连接云端排行榜</div>';
+                return;
+            }
+
+            db.collection("quiz_results").get()
+            .then((snapshot) => {
+                if (snapshot.empty) {
+                    listEl.innerHTML = '<div class="text-center py-4 text-gray-500">暂无同学提交，你是第一个！</div>';
+                    countEl.innerText = '共 0 人参与';
+                    return;
+                }
+
+                let results = [];
+                snapshot.forEach(doc => {
+                    results.push(doc.data());
+                });
+
+                // Sort: Highest score first, then newest timestamp
+                results.sort((a, b) => {
+                    if (b.score !== a.score) {
+                        return b.score - a.score;
+                    }
+                    return new Date(b.timestamp) - new Date(a.timestamp);
+                });
+
+                countEl.innerText = `已收集 ${results.length} 位同学的战报`;
+                listEl.innerHTML = '';
+
+                results.forEach((res, index) => {
+                    const isSelf = (res.email === studentInfo.email && res.name === studentInfo.name);
+                    
+                    let rankBadge = `<span class="w-6 h-6 flex items-center justify-center font-bold rounded-full bg-white/10 text-gray-300 text-[11px]">${index + 1}</span>`;
+                    if (index === 0) rankBadge = `<span class="w-6 h-6 flex items-center justify-center font-bold rounded-full bg-yellow-500 text-black text-[11px]">🥇 1</span>`;
+                    if (index === 1) rankBadge = `<span class="w-6 h-6 flex items-center justify-center font-bold rounded-full bg-gray-300 text-black text-[11px]">🥈 2</span>`;
+                    if (index === 2) rankBadge = `<span class="w-6 h-6 flex items-center justify-center font-bold rounded-full bg-amber-600 text-white text-[11px]">🥉 3</span>`;
+
+                    const row = document.createElement('div');
+                    row.className = `p-2.5 rounded-xl border flex justify-between items-center transition ${isSelf ? 'bg-purple-900/40 border-purple-500/50 text-white' : 'bg-white/5 border-white/5 text-gray-300'}`;
+                    
+                    row.innerHTML = `
+                        <div class="flex items-center gap-2.5">
+                            ${rankBadge}
+                            <div>
+                                <div class="font-bold flex items-center gap-1.5">
+                                    <span>${res.name}</span>
+                                    ${isSelf ? '<span class="text-[9px] bg-purple-500/30 text-purple-200 px-1.5 py-0.2 rounded border border-purple-400/30">你自己</span>' : ''}
+                                </div>
+                                <div class="text-[10px] text-gray-400">英雄: ${res.hero || '无'}</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="font-mono font-bold text-emerald-400 text-sm">${res.score} 分</span>
+                            <div class="text-[9px] text-gray-500">${res.timestamp ? res.timestamp.split(' ')[0] : ''}</div>
+                        </div>
+                    `;
+                    listEl.appendChild(row);
+                });
+            })
+            .catch((err) => {
+                console.error(err);
+                listEl.innerHTML = '<div class="text-center py-4 text-red-400">加载排行榜失败</div>';
+            });
+        }
+
+        // Teacher Area
         function openTeacherModal() {
             document.getElementById('teacher-modal').classList.remove('hidden');
         }
@@ -567,7 +665,7 @@
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `5年级历史成绩单_${new Date().toISOString().slice(0,10)}.csv`;
+                a.download = `5年级历史成绩单_Unit5_${new Date().toISOString().slice(0,10)}.csv`;
                 a.click();
             });
         }
