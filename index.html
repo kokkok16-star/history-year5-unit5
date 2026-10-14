@@ -69,7 +69,6 @@
       min-height: 100vh;
     }
 
-    /* Youthful Glassmorphism Cards */
     .glass-card {
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(16px);
@@ -108,7 +107,6 @@
       transform: translateY(-2px);
     }
 
-    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
     }
@@ -131,7 +129,6 @@
   <div class="fixed -top-20 -left-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
   <div class="fixed -bottom-20 -right-20 w-80 h-80 bg-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-  <!-- Top Navigation Header -->
   <header class="w-full max-w-4xl flex flex-col sm:flex-row justify-between items-center mb-4 gap-3 z-10">
     <div class="flex items-center gap-3">
       <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 p-0.5 shadow-lg shadow-purple-500/30 animate-float">
@@ -157,17 +154,14 @@
         <span id="soundText">音效：开启</span>
       </button>
       <button onclick="openTeacherModal()" class="px-3.5 py-2 rounded-xl bg-pink-500/20 border border-pink-400/40 text-xs font-bold text-pink-200 flex items-center gap-2 hover:bg-pink-500/30 transition shadow-lg">
-        <i class="fa-solid fa-file-excel text-emerald-400"></i> 教师专区 / 导出数据
+        <i class="fa-solid fa-fire text-amber-400"></i> 教师专区 / 云端控制台
       </button>
     </div>
   </header>
 
   <main class="w-full max-w-4xl flex-1 flex flex-col justify-center items-center z-10 relative my-2">
 
-    <!-- ==================== 1. REGISTRATION / LOGIN SCREEN ==================== -->
     <div id="loginScreen" class="w-full max-w-lg glass-card p-6 sm:p-8 rounded-3xl text-center space-y-6 animate-pop">
-      
-      <!-- Screen Title -->
       <div class="space-y-2">
         <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-pink-500/30 text-pink-300 rounded-full text-xs font-bold shadow-sm">
           <i class="fa-solid fa-gamepad text-pink-400"></i> 15 题全答式·历史挑战赛
@@ -176,7 +170,7 @@
           开启你的历史挑战之旅！
         </h2>
         <p class="text-xs text-slate-300 leading-relaxed">
-          答对积累积分，答错也能看详细解析！<br>完整回答所有 15 题，争夺英雄榜高分荣誉！
+          答对积累积分，答错也能看详细解析！<br>完整回答所有 15 题，成绩将自动汇集至老师端 Firebase 数据库！
         </p>
       </div>
 
@@ -230,7 +224,6 @@
           </p>
         </div>
 
-        <!-- Custom Validation Error Message -->
         <div id="loginError" class="hidden p-3.5 rounded-2xl bg-pink-950/90 border border-pink-500 text-pink-200 text-xs flex items-center gap-2 animate-shake">
           <i class="fa-solid fa-triangle-exclamation text-pink-400 text-base shrink-0"></i>
           <span id="loginErrorMsg">请输入有效的 MOE-DL 邮箱账号！</span>
@@ -243,12 +236,8 @@
       </form>
     </div>
 
-    <!-- ==================== 2. GAMEPLAY SCREEN ==================== -->
     <div id="gameScreen" class="hidden w-full space-y-4 animate-pop">
-      
-      <!-- Modern Status HUD -->
       <div class="glass-card p-4 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4">
-        <!-- Player Info -->
         <div class="flex items-center gap-3 w-full sm:w-auto">
           <div id="hudAvatar" class="text-3xl bg-gradient-to-tr from-purple-600 to-pink-500 p-2.5 rounded-2xl shadow-md">🗡️</div>
           <div>
@@ -264,7 +253,6 @@
           </div>
         </div>
 
-        <!-- Question Counter & Score -->
         <div class="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-4 border-t sm:border-t-0 border-white/10 pt-3 sm:pt-0">
           <div class="text-center px-3 py-1 rounded-2xl bg-white/5 border border-white/10">
             <div class="text-[10px] text-purple-300 font-bold uppercase">获得总分</div>
@@ -281,13 +269,10 @@
 
       <!-- Question Card -->
       <div class="glass-card p-5 sm:p-8 rounded-3xl relative">
-        
-        <!-- Timer Progress Bar -->
         <div class="w-full bg-slate-900/80 rounded-full h-2.5 mb-5 overflow-hidden border border-white/10 p-0.5">
           <div id="timerBar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full rounded-full transition-all duration-100 ease-linear" style="width: 100%;"></div>
         </div>
 
-        <!-- Question Header & Text -->
         <div class="space-y-3 mb-6">
           <div class="flex justify-between items-center">
             <span id="qTag" class="px-3 py-1 bg-purple-500/20 text-purple-300 border border-purple-400/30 rounded-full text-xs font-bold">
@@ -302,18 +287,13 @@
           </h3>
         </div>
 
-        <!-- Answer Options Grid -->
         <div id="optionsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-4">
-          <!-- Options injected via JS -->
         </div>
 
-        <!-- Feedback & Detailed Explanation Banner -->
         <div id="explanationBox" class="hidden p-4 sm:p-5 rounded-2xl space-y-3 border animate-pop">
           <div class="flex items-center gap-2 font-black text-sm sm:text-base" id="feedbackHeader">
-            <!-- Correct / Incorrect Banner -->
           </div>
           <p id="explanationText" class="text-xs sm:text-sm text-slate-200 leading-relaxed bg-black/20 p-3 rounded-xl">
-            <!-- Explanation Text -->
           </p>
           <div class="pt-1 flex justify-end">
             <button id="nextBtn" onclick="nextQuestion()" class="btn-gradient px-6 py-2.5 rounded-xl text-white font-black text-xs sm:text-sm flex items-center gap-2 shadow-lg">
@@ -322,25 +302,20 @@
             </button>
           </div>
         </div>
-
       </div>
     </div>
 
-    <!-- ==================== 3. END GAME & LEADERBOARD SCREEN ==================== -->
     <div id="endScreen" class="hidden w-full max-w-2xl glass-card p-6 sm:p-8 rounded-3xl space-y-6 text-center animate-pop">
-      
-      <!-- Victory Banner -->
       <div class="space-y-2">
         <div id="victoryIcon" class="text-6xl animate-bounce-soft">🏆</div>
         <h2 id="endTitle" class="text-2xl sm:text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-pink-300 to-purple-300">
           挑战完成！历史知识大丰收！
         </h2>
         <p id="endSubtitle" class="text-xs text-slate-300">
-          你已成功完成单元 5 全部 15 道练习题！
+          你已成功完成单元 5 全部 15 道练习题，成绩已实时同步！
         </p>
       </div>
 
-      <!-- Player Score Summary Box -->
       <div class="grid grid-cols-3 gap-3 bg-slate-900/60 p-4 rounded-2xl border border-white/10">
         <div class="p-2">
           <div class="text-[10px] font-bold text-purple-300">最终得分</div>
@@ -356,23 +331,20 @@
         </div>
       </div>
 
-      <!-- Leaderboard Section -->
       <div class="space-y-3 text-left">
         <div class="flex justify-between items-center border-b border-white/10 pb-2">
           <h3 class="font-bold text-purple-200 text-sm flex items-center gap-2">
             <i class="fa-solid fa-trophy text-amber-400"></i>
-            <span>英雄荣耀榜 (MOE 专属排行榜)</span>
+            <span>英雄荣耀榜 (实时积分排行)</span>
           </h3>
           <span class="text-[10px] text-purple-300/70">按最高得分排序</span>
         </div>
 
-        <!-- Leaderboard Table Container -->
         <div class="max-h-56 overflow-y-auto space-y-2 pr-1" id="leaderboardList">
           <div class="text-center py-4 text-xs text-purple-300/60">正在加载排行榜数据...</div>
         </div>
       </div>
 
-      <!-- Action Buttons -->
       <div class="flex flex-col sm:flex-row gap-3 pt-2">
         <button onclick="restartGame()" class="flex-1 btn-gradient py-3.5 rounded-2xl text-white font-black text-sm flex items-center justify-center gap-2">
           <i class="fa-solid fa-rotate-right"></i>
@@ -380,34 +352,31 @@
         </button>
         <button onclick="openTeacherModal()" class="flex-1 py-3.5 rounded-2xl bg-emerald-600/80 hover:bg-emerald-500 border border-emerald-400/50 text-white font-black text-sm flex items-center justify-center gap-2 transition shadow-lg">
           <i class="fa-solid fa-download"></i>
-          <span>教师专区 / 管理与导出</span>
+          <span>教师专区 / 云端数据库与导出</span>
         </button>
       </div>
     </div>
 
   </main>
 
-  <!-- ==================== TEACHER MANAGEMENT MODAL ==================== -->
   <div id="teacherModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden animate-pop">
     <div class="glass-card-bright w-full max-w-4xl rounded-3xl p-6 sm:p-8 text-slate-900 space-y-5 relative max-h-[90vh] overflow-y-auto">
       
-      <!-- Close Button -->
       <button onclick="closeTeacherModal()" class="absolute top-5 right-5 w-9 h-9 bg-slate-200 hover:bg-slate-300 rounded-full text-slate-700 flex items-center justify-center font-bold transition">
         <i class="fa-solid fa-xmark"></i>
       </button>
 
-      <!-- Modal Header -->
       <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
-        <div class="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center text-2xl shadow-md">
+        <div class="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center text-2xl shadow-md">
           <i class="fa-solid fa-user-gear"></i>
         </div>
         <div>
-          <h3 class="text-xl font-black text-slate-800">教师数据管理与成绩控制台</h3>
-          <p class="text-xs text-slate-500">管理学生提交记录、清理测试数据，或一键导出 Excel 成绩单</p>
+          <h3 class="text-xl font-black text-slate-800">教师 Firebase 数据管理与成绩控制台</h3>
+          <p class="text-xs text-slate-500">查看实时接收的学生成绩，或一键导出 Excel CSV 表格</p>
         </div>
       </div>
 
-      <!-- Password Guard (Hidden Password Prompt) -->
+      <!-- Password Guard -->
       <div id="teacherAuthBox" class="p-5 rounded-2xl bg-slate-100 border border-slate-200 space-y-3">
         <label class="block text-xs font-bold text-slate-700">
           <i class="fa-solid fa-lock text-pink-500 mr-1"></i> 请输入教师管理密码：
@@ -422,26 +391,70 @@
         <p id="teacherAuthError" class="text-xs text-pink-600 hidden font-bold">密码不正确，请重试！</p>
       </div>
 
-      <!-- Main Teacher Data Dashboard (Shown after verification) -->
+      <!-- Dashboard -->
       <div id="teacherDataContent" class="hidden space-y-4">
-        <!-- Actions & Stats Bar -->
+        <div id="dbStatusBanner" class="p-3.5 rounded-2xl text-xs flex items-center justify-between gap-2 border">
+          <div class="flex items-center gap-2">
+            <span id="dbStatusDot" class="w-3 h-3 rounded-full bg-amber-500 animate-pulse"></span>
+            <span id="dbStatusText" class="font-bold">正在检测 Firebase 云端服务...</span>
+          </div>
+          <span id="dbStatusBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase">检测中</span>
+        </div>
+
+        <!-- FIREBASE DIRECT CONFIG CARD -->
+        <div class="p-4 rounded-2xl bg-indigo-50 border border-indigo-200 text-indigo-950 space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-xs sm:text-sm flex items-center gap-2 text-indigo-900">
+              <i class="fa-solid fa-fire text-amber-500 text-base"></i>
+              <span>Firebase Console 云数据库配置 (支持即时云端连接)</span>
+            </h4>
+            <button onclick="toggleFirebaseSetupGuide()" class="text-[11px] font-bold text-indigo-600 hover:text-indigo-800 underline flex items-center gap-1">
+              <i class="fa-solid fa-circle-question"></i> 30秒设置指南
+            </button>
+          </div>
+
+          <!-- Quick Setup Form -->
+          <div class="space-y-2">
+            <p class="text-[11px] text-indigo-700 leading-relaxed">
+              将 Firebase Console 中创建的 <code class="bg-indigo-100 px-1 py-0.5 rounded font-mono text-indigo-900">firebaseConfig</code> 代码块直接粘贴至下方并保存：
+            </p>
+            <div class="flex gap-2">
+              <textarea id="firebaseConfigInput" rows="2" placeholder='{"apiKey": "AIzaSy...", "authDomain": "...firebaseapp.com", "projectId": "my-project", ...}' 
+                class="flex-1 p-2.5 rounded-xl border border-indigo-200 text-xs font-mono bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-800"></textarea>
+              <button onclick="saveFirebaseConfigFromUI()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl transition shadow flex flex-col items-center justify-center shrink-0">
+                <i class="fa-solid fa-floppy-disk mb-1 text-sm"></i>
+                <span>保存并连通</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Guide Drawer -->
+          <div id="firebaseGuideDrawer" class="hidden p-3 rounded-xl bg-white border border-indigo-100 text-[11px] text-slate-600 space-y-2 font-sans">
+            <div class="font-bold text-indigo-900 border-b border-indigo-100 pb-1">🔥 3步免费绑定 Firebase Console：</div>
+            <ol class="list-decimal list-inside space-y-1 text-slate-700">
+              <li>访问 <a href="https://console.firebase.google.com/" target="_blank" class="text-indigo-600 underline font-bold">Firebase Console</a> &rarr; 点击“添加项目 (Add project)”。</li>
+              <li>左侧菜单打开 <strong>Firestore Database</strong> &rarr; 创建数据库 &rarr; 选“测试模式启动”。</li>
+              <li>在“项目设置 (Project settings)”中添加 Web 应用，复制弹出的配置对象粘贴至上方文本框保存即可！</li>
+            </ol>
+          </div>
+        </div>
+
         <div class="flex flex-col sm:flex-row justify-between items-center gap-3 bg-slate-100 p-3.5 rounded-2xl border border-slate-200">
           <div class="text-xs font-bold text-slate-700">
-            📊 已提交人数：<span id="totalStudentCount" class="text-pink-600 font-black text-base">0</span> 人
+            📊 已汇总学生成绩记录：<span id="totalStudentCount" class="text-pink-600 font-black text-base">0</span> 人
           </div>
           <div class="flex flex-wrap sm:flex-nowrap gap-2 w-full sm:w-auto">
             <button onclick="clearAllDataConfirm()" class="px-3.5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition shadow">
               <i class="fa-solid fa-trash-can"></i>
-              <span>清空所有测试数据</span>
+              <span>清空所有记录</span>
             </button>
             <button onclick="exportToCSV()" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 shadow-md transition">
               <i class="fa-solid fa-file-arrow-down text-base"></i>
-              <span>下载全班 Excel 成绩单 (.csv)</span>
+              <span>导出全班 Excel 成绩单 (.csv)</span>
             </button>
           </div>
         </div>
 
-        <!-- Student Data Table -->
         <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-inner max-h-80 overflow-y-auto">
           <table class="w-full text-left border-collapse text-xs">
             <thead>
@@ -456,7 +469,6 @@
               </tr>
             </thead>
             <tbody id="teacherTableBody" class="divide-y divide-slate-200 bg-white text-slate-700">
-              <!-- Injected by JS -->
             </tbody>
           </table>
         </div>
@@ -465,55 +477,171 @@
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- CUSTOM CONFIRM MODAL -->
+  <div id="customConfirmModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4 hidden animate-pop">
+    <div class="bg-white rounded-3xl p-6 max-w-sm w-full text-center space-y-4 shadow-2xl border border-slate-200">
+      <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center text-2xl mx-auto">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <h4 class="font-bold text-slate-800 text-base" id="confirmTitle">确认操作</h4>
+      <p class="text-xs text-slate-600 leading-relaxed" id="confirmMessage">确定要执行此操作吗？</p>
+      <div class="flex gap-2 pt-2">
+        <button id="confirmCancelBtn" class="flex-1 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+          取消
+        </button>
+        <button id="confirmOkBtn" class="flex-1 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs transition shadow-md">
+          确定执行
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOM ALERT TOAST -->
+  <div id="customAlertModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-[60] flex items-center justify-center p-4 hidden animate-pop">
+    <div class="bg-white rounded-3xl p-6 max-w-xs w-full text-center space-y-4 shadow-2xl border border-slate-200">
+      <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl mx-auto">
+        <i class="fa-solid fa-circle-info"></i>
+      </div>
+      <p class="text-xs font-bold text-slate-800 leading-relaxed" id="alertMessage">提示信息</p>
+      <button onclick="closeCustomAlert()" class="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs transition shadow-md">
+        明白了
+      </button>
+    </div>
+  </div>
+
   <footer class="w-full max-w-4xl text-center py-3 border-t border-white/10 text-[11px] text-slate-400 z-10 flex justify-between items-center px-2">
-    <p>5年级历史 单元5：地方领袖的起义与抗争 巩固练习 | KSSR Semakan 课程标准</p>
+    <p>5年级历史 单元5：地方领袖的起义与抗争 巩固练习 | KSSR Semakan</p>
     <button onclick="openTeacherModal()" class="text-xs text-pink-300/80 hover:text-pink-300 underline flex items-center gap-1">
-      <i class="fa-solid fa-user-gear"></i> 教师专区
+      <i class="fa-solid fa-user-gear"></i> 教师控制台
     </button>
   </footer>
 
   <script type="module">
-    // Firebase Modular Imports
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
     import { getFirestore, collection, doc, setDoc, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    // App Initialization
     const appId = typeof __app_id !== 'undefined' ? __app_id : 'sejarah-yr5-u5-quiz';
     let db = null;
     let auth = null;
     let currentUser = null;
+    let isCloudConnected = false;
 
-    // Check Firebase configuration
-    if (typeof __firebase_config !== 'undefined' && __firebase_config) {
-      try {
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const app = initializeApp(firebaseConfig);
-        db = getFirestore(app);
-        auth = getAuth(app);
+    // Load dynamic Firebase config from localStorage or injected environment
+    function getActiveFirebaseConfig() {
+      const savedUIConfig = localStorage.getItem('user_saved_firebase_config');
+      if (savedUIConfig) {
+        try { return JSON.parse(savedUIConfig); } catch(e){}
+      }
+      if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+        try { return JSON.parse(__firebase_config); } catch(e){}
+      }
+      return null;
+    }
 
-        // Auth handling
-        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-          signInWithCustomToken(auth, __initial_auth_token).catch(err => {
-            console.log("Token auth error, fallback to anonymous", err);
+    function initFirebaseService() {
+      const activeConfig = getActiveFirebaseConfig();
+      if (activeConfig && activeConfig.apiKey) {
+        try {
+          const app = initializeApp(activeConfig);
+          db = getFirestore(app);
+          auth = getAuth(app);
+
+          if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+            signInWithCustomToken(auth, __initial_auth_token).catch(() => signInAnonymously(auth));
+          } else {
             signInAnonymously(auth);
-          });
-        } else {
-          signInAnonymously(auth);
-        }
-
-        onAuthStateChanged(auth, (user) => {
-          if (user) {
-            currentUser = user;
           }
-        });
-      } catch (e) {
-        console.warn("Firebase initialization skipped, using local mode:", e);
+
+          onAuthStateChanged(auth, (user) => {
+            if (user) {
+              currentUser = user;
+              isCloudConnected = true;
+              updateDbStatusUI();
+            }
+          });
+        } catch (e) {
+          console.warn("Firebase Init Exception:", e);
+        }
+      } else {
+        updateDbStatusUI();
       }
     }
 
-    // Export Firebase functions to window for game script access
+    initFirebaseService();
+
+    window.saveFirebaseConfigFromUI = function() {
+      const rawText = document.getElementById('firebaseConfigInput').value.trim();
+      if (!rawText) {
+        showCustomAlert("请输入或粘贴 Firebase 配置内容！");
+        return;
+      }
+
+      try {
+        let configObj = null;
+        if (rawText.startsWith('{')) {
+          configObj = JSON.parse(rawText);
+        } else {
+          const match = rawText.match(/\{[\s\S]*\}/);
+          if (match) {
+            const jsonStr = match[0]
+              .replace(/([a-zA-Z0-9_]+)\s*:/g, '"$1":')
+              .replace(/'/g, '"')
+              .replace(/,\s*}/g, '}');
+            configObj = JSON.parse(jsonStr);
+          }
+        }
+
+        if (configObj && configObj.apiKey) {
+          localStorage.setItem('user_saved_firebase_config', JSON.stringify(configObj));
+          showCustomAlert("🎉 Firebase Console 密钥保存成功！正在建立云端连接...");
+          setTimeout(() => {
+            window.location.reload();
+          }, 1200);
+        } else {
+          showCustomAlert("无法解析配置，请确保复制了包含 apiKey 和 projectId 的完整对象。");
+        }
+      } catch (err) {
+        showCustomAlert("格式不正确，请确保粘贴完整的 Firebase Config 对象。");
+      }
+    };
+
+    window.toggleFirebaseSetupGuide = function() {
+      const drawer = document.getElementById('firebaseGuideDrawer');
+      drawer.classList.toggle('hidden');
+    };
+
+    function updateDbStatusUI() {
+      const banner = document.getElementById('dbStatusBanner');
+      const dot = document.getElementById('dbStatusDot');
+      const text = document.getElementById('dbStatusText');
+      const badge = document.getElementById('dbStatusBadge');
+      const input = document.getElementById('firebaseConfigInput');
+
+      if (!banner) return;
+
+      const savedUIConfig = localStorage.getItem('user_saved_firebase_config');
+      if (savedUIConfig && input && !input.value) {
+        input.value = savedUIConfig;
+      }
+
+      if (isCloudConnected && db) {
+        banner.className = "p-3.5 rounded-2xl text-xs flex items-center justify-between gap-2 border bg-emerald-50 border-emerald-200 text-emerald-900";
+        dot.className = "w-3 h-3 rounded-full bg-emerald-500 animate-ping";
+        text.innerHTML = `<strong>🟢 Firebase Console 云数据库已成功连接！</strong> 学生的成绩会实时保存进 Firebase。`;
+        badge.className = "px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase bg-emerald-200 text-emerald-800";
+        badge.innerText = "Firebase 已连通";
+      } else {
+        banner.className = "p-3.5 rounded-2xl text-xs flex items-center justify-between gap-2 border bg-amber-50 border-amber-200 text-amber-900";
+        dot.className = "w-3 h-3 rounded-full bg-amber-500";
+        text.innerHTML = `<strong>💡 离线/单机保存模式：</strong> 在下方配置 Firebase 密钥可实现全班云端即时同步。`;
+        badge.className = "px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase bg-amber-200 text-amber-800";
+        badge.innerText = "本地离线储存";
+      }
+    }
+
+    window.updateDbStatusUI = updateDbStatusUI;
+
     window.saveLeaderboardScore = async function(entry) {
       if (db && currentUser) {
         try {
@@ -526,10 +654,10 @@
             score: entry.score,
             correct: entry.correct,
             avatar: entry.avatar,
-            timestamp: Date.now()
+            timestamp: entry.timestamp
           }, { merge: true });
         } catch (e) {
-          console.error("Error saving to Firestore:", e);
+          console.error("Firebase Sync Error:", e);
         }
       }
       saveLocalScore(entry);
@@ -545,7 +673,7 @@
             scores.push({ id: docSnap.id, ...docSnap.data() });
           });
         } catch (e) {
-          console.error("Error fetching Firestore leaderboard:", e);
+          console.error("Error fetching Firestore data:", e);
         }
       }
       if (scores.length === 0) {
@@ -563,7 +691,7 @@
           const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'leaderboard', docId);
           await deleteDoc(docRef);
         } catch (e) {
-          console.error("Error deleting document from Firestore:", e);
+          console.error("Firestore Delete Exception:", e);
         }
       }
       deleteLocalScore(email);
@@ -578,7 +706,7 @@
             await deleteDoc(docSnap.ref);
           });
         } catch (e) {
-          console.error("Error clearing Firestore collection:", e);
+          console.error("Firestore Clear Exception:", e);
         }
       }
       localStorage.removeItem('sejarah_u5_scores_v2');
@@ -613,7 +741,6 @@
   </script>
 
   <script>
-    // WEB AUDIO API SOUND ENGINE
     let audioCtx = null;
     let isSoundEnabled = true;
 
@@ -702,7 +829,6 @@
       }
     }
 
-    // 15 QUESTIONS DATASET
     const quizData = [
       {
         id: 1,
@@ -910,31 +1036,23 @@
       });
     }
 
-    // STRICT NAME VALIDATION
     function validateStudentName(name) {
       const cleanName = name.trim();
-      // Minimum 2 characters
       if (cleanName.length < 2) return false;
-      // Reject pure numbers or special symbols
       if (/^[\d\W]+$/.test(cleanName)) return false;
-      // Reject repeated single chars like "aaaa", "111"
       if (/^(.)\1+$/.test(cleanName)) return false;
-      // Must contain valid letters or Chinese chars
       if (!/^[\u4e00-\u9fa5a-zA-Z\s.-]{2,30}$/.test(cleanName)) return false;
       return true;
     }
 
-    // STRICT MOE EMAIL VALIDATION
     function validateMoeEmail(email) {
       const cleanEmail = email.trim().toLowerCase();
-      // Must end with @moe-dl.edu.my
       if (!cleanEmail.endsWith('@moe-dl.edu.my')) return false;
       
       const parts = cleanEmail.split('@');
       if (parts.length !== 2) return false;
       
       const prefix = parts[0];
-      // Prefix must be at least 3 chars, e.g. m-12345678 or student name
       if (prefix.length < 3) return false;
       if (!/^[a-z0-9._-]+$/i.test(prefix)) return false;
 
@@ -950,14 +1068,12 @@
       const errorDiv = document.getElementById('loginError');
       const errorMsg = document.getElementById('loginErrorMsg');
 
-      // Validate Name
       if (!validateStudentName(nameInput)) {
-        errorMsg.innerText = "请输入真实的学生姓名（中文或英文，至少2个字，禁止输入乱码或纯数字）！";
+        errorMsg.innerText = "请输入真实的学生姓名（中文或英文，至少2个字，禁止乱码）！";
         errorDiv.classList.remove('hidden');
         return;
       }
 
-      // Validate MOE Email
       if (!validateMoeEmail(emailInput)) {
         errorMsg.innerText = "请输入有效的 MOE 学生邮箱！前缀需完整，且必须以 @moe-dl.edu.my 结尾。";
         errorDiv.classList.remove('hidden');
@@ -966,22 +1082,18 @@
 
       errorDiv.classList.add('hidden');
 
-      // Setup Player
       currentPlayer = {
         name: nameInput,
         email: emailInput.toLowerCase(),
         avatar: avatars[selectedAvatarIdx]
       };
 
-      // HUD Setup
       document.getElementById('hudAvatar').innerText = currentPlayer.avatar;
       document.getElementById('hudPlayerName').innerText = currentPlayer.name;
 
-      // Switch screens
       document.getElementById('loginScreen').classList.add('hidden');
       document.getElementById('gameScreen').classList.remove('hidden');
 
-      // Reset game state
       currentQIndex = 0;
       score = 0;
       correctCount = 0;
@@ -1081,7 +1193,7 @@
 
         explanationBox.className = "p-4 sm:p-5 rounded-2xl space-y-3 border border-emerald-500/40 bg-emerald-950/40 animate-pop";
         feedbackHeader.className = "flex items-center gap-2 font-black text-sm sm:text-base text-emerald-300";
-        feedbackHeader.innerHTML = `<i class="fa-solid fa-face-smile-wink text-xl text-emerald-400"></i> 回答正确！精准掌握知识！ (+${gainedScore} 分)`;
+        feedbackHeader.innerHTML = `<i class="fa-solid fa-face-smile-wink text-xl text-emerald-400"></i> 回答正确！ (+${gainedScore} 分)`;
         
         if (combo > 1) {
           const comboBadge = document.getElementById('hudCombo');
@@ -1097,9 +1209,9 @@
         explanationBox.className = "p-4 sm:p-5 rounded-2xl space-y-3 border border-pink-500/40 bg-pink-950/40 animate-pop";
         feedbackHeader.className = "flex items-center gap-2 font-black text-sm sm:text-base text-pink-300";
         if (selectedIndex === -1) {
-          feedbackHeader.innerHTML = `<i class="fa-solid fa-clock text-xl text-pink-400"></i> 答题超时！没关系，看一下解析继续加油！`;
+          feedbackHeader.innerHTML = `<i class="fa-solid fa-clock text-xl text-pink-400"></i> 答题超时！看一下解析继续加油！`;
         } else {
-          feedbackHeader.innerHTML = `<i class="fa-solid fa-circle-exclamation text-xl text-pink-400"></i> 差了一点点！一起来温习这道题的知识点吧：`;
+          feedbackHeader.innerHTML = `<i class="fa-solid fa-circle-exclamation text-xl text-pink-400"></i> 差了一点点！温习一下解析：`;
         }
       }
 
@@ -1147,7 +1259,8 @@
         email: currentPlayer.email,
         score: score,
         correct: correctCount,
-        avatar: currentPlayer.avatar
+        avatar: currentPlayer.avatar,
+        timestamp: Date.now()
       };
 
       if (window.saveLeaderboardScore) {
@@ -1159,7 +1272,7 @@
 
     async function renderLeaderboard() {
       const listContainer = document.getElementById('leaderboardList');
-      listContainer.innerHTML = `<div class="text-center py-4 text-xs text-purple-300/70"><i class="fa-solid fa-spinner fa-spin mr-1"></i>正在同步英雄榜数据...</div>`;
+      listContainer.innerHTML = `<div class="text-center py-4 text-xs text-purple-300/70"><i class="fa-solid fa-spinner fa-spin mr-1"></i>正在同步云端排行榜...</div>`;
 
       let scores = [];
       if (window.fetchLeaderboard) {
@@ -1210,7 +1323,6 @@
       document.getElementById('loginScreen').classList.remove('hidden');
     }
 
-    // TEACHER MODAL, PASSWORD & DATA MANAGEMENT FUNCTIONS
     function openTeacherModal() {
       playSound('click');
       document.getElementById('teacherModal').classList.remove('hidden');
@@ -1225,11 +1337,11 @@
       const pass = document.getElementById('teacherPassInput').value.trim();
       const err = document.getElementById('teacherAuthError');
       
-      // CONFIDENTIAL TEACHER PASSWORD
       if (pass === '2020Hui%%') {
         err.classList.add('hidden');
         document.getElementById('teacherAuthBox').classList.add('hidden');
         document.getElementById('teacherDataContent').classList.remove('hidden');
+        if (window.updateDbStatusUI) window.updateDbStatusUI();
         loadTeacherTableData();
       } else {
         err.classList.remove('hidden');
@@ -1238,7 +1350,7 @@
 
     async function loadTeacherTableData() {
       const tbody = document.getElementById('teacherTableBody');
-      tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-slate-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i>正在加载学生成绩记录...</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-slate-400"><i class="fa-solid fa-spinner fa-spin mr-2"></i>正在加载全班成绩数据...</td></tr>`;
 
       let scores = [];
       if (window.fetchLeaderboard) {
@@ -1275,73 +1387,92 @@
       tbody.innerHTML = html;
     }
 
-    // Single Record Deletion
-    async function deleteSingleRecord(email, name) {
-      if (confirm(`确定要删除学生【${name}】(${email}) 的答题记录吗？`)) {
+    function showCustomConfirm(title, msg, onConfirm) {
+      document.getElementById('confirmTitle').innerText = title;
+      document.getElementById('confirmMessage').innerText = msg;
+      
+      const modal = document.getElementById('customConfirmModal');
+      const cancelBtn = document.getElementById('confirmCancelBtn');
+      const okBtn = document.getElementById('confirmOkBtn');
+
+      modal.classList.remove('hidden');
+
+      const cleanup = () => {
+        modal.classList.add('hidden');
+        okBtn.onclick = null;
+        cancelBtn.onclick = null;
+      };
+
+      cancelBtn.onclick = () => {
+        playSound('click');
+        cleanup();
+      };
+
+      okBtn.onclick = async () => {
+        playSound('click');
+        cleanup();
+        if (onConfirm) await onConfirm();
+      };
+    }
+
+    function showCustomAlert(msg) {
+      document.getElementById('alertMessage').innerText = msg;
+      document.getElementById('customAlertModal').classList.remove('hidden');
+    }
+
+    function closeCustomAlert() {
+      playSound('click');
+      document.getElementById('customAlertModal').classList.add('hidden');
+    }
+
+    function deleteSingleRecord(email, name) {
+      showCustomConfirm("确认删除记录", `确定要删除学生【${name}】(${email}) 的答题记录吗？`, async () => {
         if (window.deleteSingleScoreCloud) {
           await window.deleteSingleScoreCloud(email);
         }
-        playSound('click');
         await loadTeacherTableData();
-      }
+      });
     }
 
-    // Clear All Records Confirmation
-    async function clearAllDataConfirm() {
-      if (confirm("⚠️ 确定要一键清空所有测试数据吗？\n清空后将无法恢复！")) {
+    function clearAllDataConfirm() {
+      showCustomConfirm("⚠️ 清空所有测试数据", "确定要一键清空全班成绩记录吗？此操作无法撤销！", async () => {
         if (window.clearAllScoresCloud) {
           await window.clearAllScoresCloud();
         }
-        playSound('click');
-        alert("已成功清空所有测试记录！");
         await loadTeacherTableData();
-      }
+      });
     }
 
     function exportToCSV() {
-      playSound('click');
-      const data = window.cachedStudentScores || [];
-      if (data.length === 0) {
-        alert("目前没有可导出的数据！");
+      const scores = window.cachedStudentScores || [];
+      if (scores.length === 0) {
+        showCustomAlert("目前没有可导出的学生数据！");
         return;
       }
 
-      let csvContent = "\uFEFF"; // UTF-8 BOM for Excel Chinese compatibility
-      csvContent += "序号,学生姓名,MOE邮箱(MOE-DL),最终得分,答对题数(满分15),代表英雄,提交时间\n";
+      let csvContent = "\uFEFF"; // UTF-8 BOM
+      csvContent += "序号,学生姓名,MOE-DL邮箱,总得分,答对题数,提交时间\n";
 
-      data.forEach((item, index) => {
-        const timeStr = item.timestamp ? new Date(item.timestamp).toLocaleString('zh-CN') : '近期';
-        const cleanName = (item.name || '').replace(/"/g, '""');
-        const cleanEmail = (item.email || '').replace(/"/g, '""');
-        
-        csvContent += `"${index + 1}","${cleanName}","${cleanEmail}","${item.score || 0}","${item.correct !== undefined ? item.correct : 0}/15","${item.avatar || '🗡️'}","${timeStr}"\n`;
+      scores.forEach((s, idx) => {
+        const name = `"${(s.name || '').replace(/"/g, '""')}"`;
+        const email = `"${(s.email || '').replace(/"/g, '""')}"`;
+        const score = s.score || 0;
+        const correct = `${s.correct || 0}/15`;
+        const timeStr = s.timestamp ? `"${new Date(s.timestamp).toLocaleString('zh-CN')}"` : '"近期提交"';
+
+        csvContent += `${idx + 1},${name},${email},${score},${correct},${timeStr}\n`;
       });
 
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.setAttribute("href", url);
-      
-      const dateStr = new Date().toISOString().slice(0, 10);
-      link.setAttribute("download", `5年级历史单元5_学生练习成绩单_${dateStr}.csv`);
-      
+      link.setAttribute("download", `5年级历史单元5巩固练习成绩单_${new Date().toISOString().slice(0,10)}.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     }
-
-    // Global exports for HTML event bindings
-    window.selectAvatar = selectAvatar;
-    window.handleStartGame = handleStartGame;
-    window.nextQuestion = nextQuestion;
-    window.restartGame = restartGame;
-    window.toggleAudio = toggleAudio;
-    window.openTeacherModal = openTeacherModal;
-    window.closeTeacherModal = closeTeacherModal;
-    window.verifyTeacherPass = verifyTeacherPass;
-    window.deleteSingleRecord = deleteSingleRecord;
-    window.clearAllDataConfirm = clearAllDataConfirm;
-    window.exportToCSV = exportToCSV;
   </script>
+
 </body>
 </html>
